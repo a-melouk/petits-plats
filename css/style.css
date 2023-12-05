@@ -22,7 +22,7 @@ header h2 {
   position: absolute;
 }
 
-.search-bar {
+.header.search-bar {
   width: 954px;
   height: 72px;
   top: 406.42px;
@@ -36,12 +36,12 @@ header h2 {
   padding: 0px 10px 0px 35px;
 }
 
-.search-bar input {
+.header.search-bar input {
   flex: 1;
   border: none;
 }
 
-.search-bar button {
+.header.search-bar button {
   width: 51px;
   height: 52px;
   border-radius: 10px;
@@ -49,11 +49,11 @@ header h2 {
   cursor: pointer;
 }
 
-.search-bar button span {
+.header.search-bar button span {
   color: #fff;
 }
 
-.search-bar input:focus {
+.header.search-bar input:focus {
   outline: none;
 }
 
@@ -63,7 +63,7 @@ header h2 {
   object-fit: cover;
 }
 
-.plates-container {
+.recipes-container {
   margin: 55px 102px;
   display: grid;
   grid-template-columns: repeat(3, 380px);
@@ -71,7 +71,7 @@ header h2 {
   grid-row-gap: 66px;
 }
 
-.plate-card {
+.recipe-card {
   border-radius: 21px;
   background: #fff;
   box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
@@ -140,4 +140,16 @@ h5 {
   grid-column-gap: 79px;
   grid-row-gap: 21px;
   margin-bottom: 61px;
+}
+
+/* Filter bar and total recipes */
+.filter-total {
+  margin: 21px 103px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 64px;
 }

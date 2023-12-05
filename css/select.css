@@ -1,0 +1,132 @@
+.filter-total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  gap: 66px;
+}
+
+.menu {
+  background-color: #fff;
+  border-radius: 11px;
+  width: 195px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu__header {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 14px;
+}
+
+.menu__title button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.fa-chevron-down {
+  color: #1b1b1b;
+  font-size: 14px;
+}
+
+div.menu__title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.filter.search-bar {
+  border: 1px solid #cdcdcd;
+  border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  width: 163px;
+  height: 36px;
+  align-items: center;
+}
+
+.filter.search-bar input {
+  width: 100%;
+  border: 0;
+  color: #7a7a7a;
+  font-size: 14px;
+}
+
+.filter.search-bar input:focus {
+  outline: none;
+}
+
+.filter.search-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter.search-bar button span {
+  color: #7a7a7a;
+}
+
+.fa-xmark {
+  margin-right: 10px;
+}
+
+.menu__items {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  background-color: #fff;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 15px;
+}
+
+.menu__item {
+  align-items: center;
+  background-color: #fff;
+  border: none;
+  color: #1b1b1b;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  height: 30px;
+  margin: 0;
+  padding: 16px;
+  text-align: left;
+  user-select: none;
+  width: 100%;
+}
+
+.menu__item:hover {
+  background-color: #ffd15b;
+  border-radius: 15px;
+}
+
+.menu__item:last-child:hover {
+  border-radius: 0 0 15px 15px;
+}
+
+.total {
+  color: #1b1b1b;
+  font-family: Anton;
+  font-size: 21px;
+}

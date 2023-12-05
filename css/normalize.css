@@ -6,6 +6,7 @@
 
 * {
   margin: 0;
+  /* padding: 0; */
 }
 
 body {
@@ -47,4 +48,8 @@ h6 {
 
 body {
   font-family: 'Manrope', sans-serif;
+}
+
+.hidden {
+  display: none;
 }
