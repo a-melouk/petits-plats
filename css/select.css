@@ -121,6 +121,14 @@ div.menu__title {
   border-radius: 15px;
 }
 
+.menu__item button {
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  text-transform: capitalize;
+}
+
 .menu__item:last-child:hover {
   border-radius: 0 0 15px 15px;
 }

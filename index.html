@@ -1,238 +1,105 @@
 <!DOCTYPE html>
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Les Petits Plats</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/select.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Les Petits Plats</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/select.css">
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700&display=swap"
-    rel="stylesheet">
-</head>
+  <body>
+    <div class="main-container">
+      <header>
+        <img src="./assets/header-background.png" alt="Un plat" />
+        <h2>Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h2>
 
-<body>
-  <div class="main-container">
-    <header>
-      <img src="./assets/header-background.png" alt="Un plat">
-      <h2>Cherchez parmi plus de 1500 recettes du quotidien,
-        simples et délicieuses</h2>
+        <div class="header search-bar">
+          <input type="text" placeholder="Rechercher une recette, un ingrédient, ..." />
+          <button type="submit">
+            <span class="fa-solid fa-magnifying-glass"></span>
+          </button>
+        </div>
+      </header>
 
-      <div class="header search-bar">
-        <input type="text" placeholder="Rechercher une recette, un ingrédient, ...">
-        <button type="submit">
-          <span class='fa-solid fa-magnifying-glass'></span>
-        </button>
-      </div>
-    </header>
-
-    <div class="filter-total">
-      <div class="filters">
-
-        <div class="menu opened">
-          <div class="menu__header">
-            <div class="menu__title">
-              <p class="menu__title">Ingrédients</p>
-              <button class="menu__arrow">
-                <span class="fa-solid fa-chevron-down fa-rotate-180"></span>
-              </button>
+      <div class="filter-total">
+        <div class="filters">
+          <div class="menu opened ingredients">
+            <div class="menu__header">
+              <div class="menu__title">
+                <p class="menu__title">Ingrédients</p>
+                <button class="menu__arrow">
+                  <span class="fa-solid fa-chevron-down fa-rotate-180"></span>
+                </button>
+              </div>
+              <div class="filter search-bar">
+                <input type="text" id="ingredient" />
+                <button>
+                  <span class="fa-solid fa-xmark"></span>
+                </button>
+                <button>
+                  <span class="fa-solid fa-magnifying-glass"></span>
+                </button>
+              </div>
             </div>
-            <div class="filter search-bar">
-              <input type="text" id="ingredient">
-              <button>
-                <span class='fa-solid fa-xmark'></span>
-              </button>
-              <button>
-                <span class='fa-solid fa-magnifying-glass'></span>
-              </button>
-            </div>
+            <ul class="menu__items"></ul>
           </div>
 
-          <div class="menu__items">
-            <button class="menu__item">Moutarde de Dijon</button>
-            <button class="menu__item">Poulet</button>
+          <div class="menu opened appareils">
+            <div class="menu__header">
+              <div class="menu__title">
+                <p class="menu__title">Appareils</p>
+                <button class="menu__arrow">
+                  <span class="fa-solid fa-chevron-down fa-rotate-180"></span>
+                </button>
+              </div>
+              <div class="filter search-bar">
+                <input type="text" id="appareil" />
+                <button>
+                  <span class="fa-solid fa-xmark"></span>
+                </button>
+                <button>
+                  <span class="fa-solid fa-magnifying-glass"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="menu__items"></div>
+          </div>
+
+          <div class="menu opened ustensils">
+            <div class="menu__header">
+              <div class="menu__title">
+                <p class="menu__title">Ustensils</p>
+                <button class="menu__arrow">
+                  <span class="fa-solid fa-chevron-down fa-rotate-180"></span>
+                </button>
+              </div>
+              <div class="filter search-bar">
+                <input type="text" id="ustensils" />
+                <button>
+                  <span class="fa-solid fa-xmark"></span>
+                </button>
+                <button>
+                  <span class="fa-solid fa-magnifying-glass"></span>
+                </button>
+              </div>
+            </div>
+            <div class="menu__items"></div>
           </div>
         </div>
 
-        <div class="menu opened">
-          <div class="menu__header">
-            <div class="menu__title">
-              <p class="menu__title">Appareils</p>
-              <button class="menu__arrow">
-                <span class="fa-solid fa-chevron-down fa-rotate-180"></span>
-              </button>
-            </div>
-            <div class="filter search-bar">
-              <input type="text" id="appareil">
-              <button>
-                <span class='fa-solid fa-xmark'></span>
-              </button>
-              <button>
-                <span class='fa-solid fa-magnifying-glass'></span>
-              </button>
-            </div>
-          </div>
-
-          <div class="menu__items">
-            <button class="menu__item">Cuiseur de Riz</button>
-            <button class="menu__item">Poêle à crêpe</button>
-          </div>
-        </div>
-
-        <div class="menu opened">
-          <div class="menu__header">
-            <div class="menu__title">
-              <p class="menu__title">Ustensils</p>
-              <button class="menu__arrow">
-                <span class="fa-solid fa-chevron-down fa-rotate-180"></span>
-              </button>
-            </div>
-            <div class="filter search-bar">
-              <input type="text" id="appareil">
-              <button>
-                <span class='fa-solid fa-xmark'></span>
-              </button>
-              <button>
-                <span class='fa-solid fa-magnifying-glass'></span>
-              </button>
-            </div>
-          </div>
-
-          <div class="menu__items">
-            <button class="menu__item">Cuillère en bois</button>
-            <button class="menu__item">Rouleau à patisserie</button>
-          </div>
-        </div>
+        <p class="total">1500 recettes</p>
       </div>
 
-      <p class="total">1500 recettes</p>
+      <section class="recipes-container"></section>
     </div>
-
-    </section>
-    <section class="recipes-container">
-      <article class="recipe-card">
-        <img src="./assets/petits-plats-photos/Recette01.jpg" alt="Recette 1" class="recipe-image">
-        <!-- <p class="recipe-time">10 min</p> -->
-        <h4 class="plate-name">Limonade de Coco</h4>
-        <section class="recipe-container">
-          <h5>Recette</h5>
-          <p class="recipe-steps">Mettre les glaçons à votre goût dans le blender, Ajouter le lait la crème de coco, le
-            jus de 2 citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée
-          </p>
-        </section>
-        <section class="ingredients-container">
-          <h5>Ingrédients</h5>
-          <div class="ingredients">
-            <div class="ingredient">
-              <p class="ingredient-name">Lait de Coco</p>
-              <p class="ingredient-quantity">400ml</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Jus de citron</p>
-              <p class="ingredient-quantity">2</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Crème de coco</p>
-              <p class="ingredient-quantity">4 cuillères</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Sucre</p>
-              <p class="ingredient-quantity">20g</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Glaçons</p>
-              <p class="ingredient-quantity">2</p>
-            </div>
-          </div>
-
-        </section>
-
-      </article>
-      <article class="recipe-card">
-        <img src="./assets/petits-plats-photos/Recette01.jpg" alt="Recette 1" class="recipe-image">
-        <!-- <p class="recipe-time">10 min</p> -->
-        <h4 class="plate-name">Limonade de Coco</h4>
-        <section class="recipe-container">
-          <h5>Recette</h5>
-          <p class="recipe-steps">Mettre les glaçons à votre goût dans le blender, Ajouter le lait la crème de coco, le
-            jus de 2 citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée
-          </p>
-        </section>
-        <section class="ingredients-container">
-          <h5>Ingrédients</h5>
-          <div class="ingredients">
-            <div class="ingredient">
-              <p class="ingredient-name">Lait de Coco</p>
-              <p class="ingredient-quantity">400ml</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Jus de citron</p>
-              <p class="ingredient-quantity">2</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Crème de coco</p>
-              <p class="ingredient-quantity">4 cuillères</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Sucre</p>
-              <p class="ingredient-quantity">20g</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Glaçons</p>
-              <p class="ingredient-quantity">2</p>
-            </div>
-          </div>
-
-        </section>
-
-      </article>
-      <article class="recipe-card">
-        <img src="./assets/petits-plats-photos/Recette01.jpg" alt="Recette 1" class="recipe-image">
-        <!-- <p class="recipe-time">10 min</p> -->
-        <h4 class="plate-name">Limonade de Coco</h4>
-        <section class="recipe-container">
-          <h5>Recette</h5>
-          <p class="recipe-steps">Mettre les glaçons à votre goût dans le blender, Ajouter le lait la crème de coco, le
-            jus de 2 citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée
-          </p>
-        </section>
-        <section class="ingredients-container">
-          <h5>Ingrédients</h5>
-          <div class="ingredients">
-            <div class="ingredient">
-              <p class="ingredient-name">Lait de Coco</p>
-              <p class="ingredient-quantity">400ml</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Jus de citron</p>
-              <p class="ingredient-quantity">2</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Crème de coco</p>
-              <p class="ingredient-quantity">4 cuillères</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Sucre</p>
-              <p class="ingredient-quantity">20g</p>
-            </div>
-            <div class="ingredient">
-              <p class="ingredient-name">Glaçons</p>
-              <p class="ingredient-quantity">2</p>
-            </div>
-          </div>
-
-        </section>
-
-      </article>
-    </section>
-  </div>
-  <script src="https://kit.fontawesome.com/2e9a2be5dc.js" crossorigin="anonymous"></script>
-</body>
-
-
+    <script src="https://kit.fontawesome.com/2e9a2be5dc.js" crossorigin="anonymous"></script>
+    <script src="./scripts/filter.js" type="module"></script>
+    <script src="./scripts/generate.js" type="module"></script>
+  </body>
 </html>
