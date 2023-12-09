@@ -19,8 +19,8 @@
         <h2>Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h2>
 
         <div class="header search-bar">
-          <input type="text" placeholder="Rechercher une recette, un ingrédient, ..." />
-          <button type="submit">
+          <input type="text" placeholder="Rechercher une recette, un ingrédient, ..." id="search-value" />
+          <button type="submit" class="search-button">
             <span class="fa-solid fa-magnifying-glass"></span>
           </button>
         </div>
@@ -41,7 +41,7 @@
                 <button>
                   <span class="fa-solid fa-xmark"></span>
                 </button>
-                <button>
+                <button class="search-button">
                   <span class="fa-solid fa-magnifying-glass"></span>
                 </button>
               </div>
@@ -99,7 +99,7 @@
       <section class="recipes-container"></section>
     </div>
     <script src="https://kit.fontawesome.com/2e9a2be5dc.js" crossorigin="anonymous"></script>
-    <script src="./scripts/filter.js" type="module"></script>
     <script src="./scripts/generate.js" type="module"></script>
+    <script src="./scripts/search.js" type="module"></script>
   </body>
 </html>

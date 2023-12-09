@@ -1,6 +1,7 @@
 .filter-total {
   display: flex;
   justify-content: space-between;
+  padding: 21px 102px 55px;
 }
 
 .filters {
@@ -137,4 +138,16 @@ div.menu__title {
   color: #1b1b1b;
   font-family: Anton;
   font-size: 21px;
+}
+
+@media (min-width: 1024px) {
+  .filter-total {
+    padding: 21px 55px 55px;
+  }
+}
+
+@media (min-width: 1232px) {
+  .filter-total {
+    padding: 21px 55px 55px;
+  }
 }
