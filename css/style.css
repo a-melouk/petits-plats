@@ -1,6 +1,5 @@
 header {
   position: relative;
-  position: relative;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -27,7 +26,7 @@ header h2 {
   font-weight: 400;
   top: 25%;
   position: absolute;
-  width: clamp(500px, 890px, 1440px);
+  width: clamp(500px, 890px, 100%);
 }
 
 .header.search-bar {
@@ -172,19 +171,14 @@ ul.ingredients {
   grid-row-gap: 10px;
 }
 
-/* Filter bar and total recipes */
-.filter-total {
-  padding: 21px 103px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.filter-bar {
-  display: flex;
-  gap: 64px;
-}
-
 /* Media queries */
+@media (min-width: 768px) {
+  .recipes-container {
+    grid-template-columns: repeat(2, 330px);
+    padding: 0px 25px;
+  }
+}
+
 @media (min-width: 1024px) {
   .recipes-container {
     grid-template-columns: repeat(2, 380px);

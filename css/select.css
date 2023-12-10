@@ -16,6 +16,18 @@
   width: 195px;
   display: flex;
   flex-direction: column;
+  gap: 14px;
+}
+
+.menu.opened {
+  max-height: 315px;
+  transition: max-height 0.5s linear;
+}
+
+.menu.closed {
+  max-height: 53px;
+  transition: max-height 0.5s linear;
+  overflow: hidden;
 }
 
 .menu__header {
@@ -23,6 +35,14 @@
   flex-direction: column;
   padding: 16px;
   gap: 14px;
+}
+
+div.menu__title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px;
+  padding-bottom: 0;
 }
 
 .menu__title button {
@@ -33,8 +53,8 @@
   display: flex;
   width: 20px;
   height: 20px;
-  justify-content: flex-start;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
 }
 
 .fa-chevron-down {
@@ -42,10 +62,21 @@
   font-size: 14px;
 }
 
-div.menu__title {
+.menu__content {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  flex-direction: column;
+  /* width: 163px; */
+  gap: 24px;
+}
+
+.menu__content.closed {
+  max-height: 0;
+  transition: max-height 0.5s linear;
+}
+
+.menu__content.opened {
+  max-height: 289px;
+  transition: max-height 0.5s linear;
 }
 
 .filter.search-bar {
@@ -54,8 +85,9 @@ div.menu__title {
   display: flex;
   justify-content: space-between;
   width: 163px;
-  height: 36px;
   align-items: center;
+  margin: 0 16px;
+  min-height: 36px;
 }
 
 .filter.search-bar input {
@@ -89,16 +121,22 @@ div.menu__title {
   margin-right: 10px;
 }
 
+/* .menu__items.closed {
+  max-height: 0;
+  transition: max-height 0.5s linear;
+} */
+
 .menu__items {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  gap: 5px;
+  /* gap: 5px; */
   background-color: #fff;
   max-height: 200px;
   overflow-y: auto;
   border-radius: 15px;
+  transition: max-height 0.5s linear;
 }
 
 .menu__item {
@@ -109,7 +147,7 @@ div.menu__title {
   cursor: pointer;
   display: flex;
   font-size: 14px;
-  height: 30px;
+  height: 42px;
   margin: 0;
   padding: 16px;
   text-align: left;
@@ -140,6 +178,35 @@ div.menu__title {
   font-size: 21px;
 }
 
+/* Filter bar and total recipes */
+.filter-total {
+  padding: 21px 103px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 64px;
+}
+
+@media (min-width: 768px) {
+  .filter-total {
+    flex-direction: column;
+    padding: 21px 25px 55px;
+  }
+
+  .total {
+    order: 1;
+    margin: 25px;
+    align-self: center;
+  }
+
+  .filters {
+    order: 2;
+  }
+}
+
 @media (min-width: 1024px) {
   .filter-total {
     padding: 21px 55px 55px;
@@ -148,6 +215,23 @@ div.menu__title {
 
 @media (min-width: 1232px) {
   .filter-total {
+    flex-direction: row;
     padding: 21px 55px 55px;
+  }
+
+  .total {
+    order: 2;
+    margin: 0;
+    align-self: flex-start;
+  }
+
+  .filters {
+    order: 1;
+  }
+}
+
+@media (min-width: 1440px) {
+  .filter-total {
+    padding: 21px 105px 55px;
   }
 }

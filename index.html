@@ -28,14 +28,16 @@
 
       <div class="filter-total">
         <div class="filters">
-          <div class="menu opened ingredients">
-            <div class="menu__header">
-              <div class="menu__title">
-                <p class="menu__title">Ingrédients</p>
-                <button class="menu__arrow">
-                  <span class="fa-solid fa-chevron-down fa-rotate-180"></span>
-                </button>
-              </div>
+          <div class="menu closed ingredients">
+            <!-- <div class="menu__header"> -->
+            <div class="menu__title">
+              <p class="menu__title">Ingrédients</p>
+              <button class="menu__arrow">
+                <span class="fa-solid fa-chevron-down"></span>
+              </button>
+            </div>
+            <!-- </div> -->
+            <div class="menu__content closed">
               <div class="filter search-bar">
                 <input type="text" id="ingredient" />
                 <button>
@@ -45,61 +47,63 @@
                   <span class="fa-solid fa-magnifying-glass"></span>
                 </button>
               </div>
+              <ul class="menu__items"></ul>
             </div>
-            <ul class="menu__items"></ul>
           </div>
 
-          <div class="menu opened appareils">
-            <div class="menu__header">
-              <div class="menu__title">
-                <p class="menu__title">Appareils</p>
-                <button class="menu__arrow">
-                  <span class="fa-solid fa-chevron-down fa-rotate-180"></span>
-                </button>
-              </div>
+          <div class="menu closed appareils">
+            <!-- <div class="menu__header"> -->
+            <div class="menu__title">
+              <p class="menu__title">Appareils</p>
+              <button class="menu__arrow">
+                <span class="fa-solid fa-chevron-down"></span>
+              </button>
+            </div>
+            <!-- </div> -->
+            <div class="menu__content closed">
               <div class="filter search-bar">
                 <input type="text" id="appareil" />
                 <button>
                   <span class="fa-solid fa-xmark"></span>
                 </button>
-                <button>
+                <button class="search-button">
                   <span class="fa-solid fa-magnifying-glass"></span>
                 </button>
               </div>
+              <ul class="menu__items"></ul>
             </div>
-
-            <div class="menu__items"></div>
           </div>
 
-          <div class="menu opened ustensils">
-            <div class="menu__header">
-              <div class="menu__title">
-                <p class="menu__title">Ustensils</p>
-                <button class="menu__arrow">
-                  <span class="fa-solid fa-chevron-down fa-rotate-180"></span>
-                </button>
-              </div>
+          <div class="menu closed ustensils">
+            <!-- <div class="menu__header"> -->
+            <div class="menu__title">
+              <p class="menu__title">Ustensils</p>
+              <button class="menu__arrow">
+                <span class="fa-solid fa-chevron-down"></span>
+              </button>
+            </div>
+            <!-- </div> -->
+            <div class="menu__content closed">
               <div class="filter search-bar">
-                <input type="text" id="ustensils" />
+                <input type="text" id="ustensil" />
                 <button>
                   <span class="fa-solid fa-xmark"></span>
                 </button>
-                <button>
+                <button class="search-button">
                   <span class="fa-solid fa-magnifying-glass"></span>
                 </button>
               </div>
+              <ul class="menu__items"></ul>
             </div>
-            <div class="menu__items"></div>
           </div>
         </div>
-
         <p class="total">1500 recettes</p>
       </div>
-
       <section class="recipes-container"></section>
     </div>
     <script src="https://kit.fontawesome.com/2e9a2be5dc.js" crossorigin="anonymous"></script>
     <script src="./scripts/generate.js" type="module"></script>
     <script src="./scripts/search.js" type="module"></script>
+    <script src="./scripts/menu.js" type="module"></script>
   </body>
 </html>
