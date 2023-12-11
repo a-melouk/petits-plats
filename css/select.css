@@ -1,19 +1,22 @@
 .filter-total {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 21px 102px 55px;
+  position: relative;
+  z-index: 2;
 }
 
 .filters {
   display: flex;
-  justify-content: space-between;
   gap: 66px;
+  justify-content: space-between;
 }
 
 .menu {
-  background-color: #fff;
-  border-radius: 11px;
   width: 195px;
+  background-color: #fff;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -33,28 +36,28 @@
 .menu__header {
   display: flex;
   flex-direction: column;
-  padding: 16px;
   gap: 14px;
+  padding: 16px;
 }
 
 div.menu__title {
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  padding: 16px;
   padding-bottom: 0;
+  padding: 16px;
 }
 
 .menu__title button {
+  width: 20px;
+  height: 20px;
+  align-items: center;
   background: none;
   border: none;
   cursor: pointer;
-  user-select: none;
   display: flex;
-  width: 20px;
-  height: 20px;
   justify-content: center;
-  align-items: center;
+  user-select: none;
 }
 
 .fa-chevron-down {
@@ -65,7 +68,6 @@ div.menu__title {
 .menu__content {
   display: flex;
   flex-direction: column;
-  /* width: 163px; */
   gap: 24px;
 }
 
@@ -80,14 +82,14 @@ div.menu__title {
 }
 
 .filter.search-bar {
-  border: 1px solid #cdcdcd;
-  border-radius: 2px;
-  display: flex;
-  justify-content: space-between;
+  min-height: 36px;
   width: 163px;
   align-items: center;
+  border-radius: 2px;
+  border: 1px solid #cdcdcd;
+  display: flex;
+  justify-content: space-between;
   margin: 0 16px;
-  min-height: 36px;
 }
 
 .filter.search-bar input {
@@ -102,15 +104,15 @@ div.menu__title {
 }
 
 .filter.search-bar button {
+  width: 20px;
+  height: 20px;
+  align-items: center;
   background: none;
   border: none;
   cursor: pointer;
-  user-select: none;
   display: flex;
-  width: 20px;
-  height: 20px;
   justify-content: center;
-  align-items: center;
+  user-select: none;
 }
 
 .filter.search-bar button span {
@@ -127,19 +129,20 @@ div.menu__title {
 } */
 
 .menu__items {
-  display: flex;
   width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  /* gap: 5px; */
-  background-color: #fff;
   max-height: 200px;
-  overflow-y: auto;
+  align-items: flex-start;
+  background-color: #fff;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
   transition: max-height 0.5s linear;
 }
 
 .menu__item {
+  height: 42px;
+  width: 100%;
   align-items: center;
   background-color: #fff;
   border: none;
@@ -147,12 +150,10 @@ div.menu__title {
   cursor: pointer;
   display: flex;
   font-size: 14px;
-  height: 42px;
   margin: 0;
   padding: 16px;
   text-align: left;
   user-select: none;
-  width: 100%;
 }
 
 .menu__item:hover {
@@ -161,9 +162,9 @@ div.menu__title {
 }
 
 .menu__item button {
-  cursor: pointer;
-  border: 0;
   background: transparent;
+  border: 0;
+  cursor: pointer;
   text-align: left;
   text-transform: capitalize;
 }
@@ -180,9 +181,9 @@ div.menu__title {
 
 /* Filter bar and total recipes */
 .filter-total {
-  padding: 21px 103px;
   display: flex;
   justify-content: space-between;
+  padding: 21px 103px;
 }
 
 .filter-bar {
@@ -197,9 +198,9 @@ div.menu__title {
   }
 
   .total {
-    order: 1;
-    margin: 25px;
     align-self: center;
+    margin: 25px;
+    order: 1;
   }
 
   .filters {
@@ -220,9 +221,9 @@ div.menu__title {
   }
 
   .total {
-    order: 2;
-    margin: 0;
     align-self: flex-start;
+    margin: 0;
+    order: 2;
   }
 
   .filters {
