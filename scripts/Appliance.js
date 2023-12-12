@@ -51,7 +51,8 @@ function generateAppliancesAfterSearch(searchValue) {
 
 //Filter appliances menu by searchValue, either pass recipes or actual appliances
 function searchAppliance(searchValue) {
-  const filteredRecipes = JSON.parse(sessionStorage.getItem('filteredRecipes'))
+  // const filteredRecipes = JSON.parse(sessionStorage.getItem('filteredRecipes'))
+  const filteredRecipes = JSON.parse(sessionStorage.getItem('history'))
   searchValue = searchValue.toLowerCase()
   const filteredAppliances = []
   filteredRecipes.map(recipe => {

@@ -1,45 +1,10 @@
-import { containsWord } from './Utils/Utils.js'
+import recipes from '../data/recipes.mjs'
 import { generateRecipeCard } from './RecipeCard.js'
 import { generateIngredients } from './Ingredient.js'
 import { generateAppliances } from './Appliance.js'
 import { generateUstensils } from './Ustensil.js'
 import { updateTotalRecipes } from './TotalRecipes.js'
-import recipes from '../data/recipes.mjs'
-
-function searchRecipesByTitle(recipes, searchValue) {
-  let result = []
-  recipes.map(recipe => {
-    if (recipe.name.toLowerCase().includes(searchValue.toLowerCase())) result.push(recipe)
-  })
-  return [...new Set(result)]
-}
-
-function searchRecipesByIngredients(recipes, searchValue) {
-  let result = []
-  recipes.map(recipe => {
-    recipe.ingredients.map(ingredient => {
-      if (ingredient.ingredient.toLowerCase().includes(searchValue.toLowerCase())) result.push(recipe)
-    })
-  })
-  return [...new Set(result)]
-}
-
-function searchRecipesByDescription(recipes, searchvalue) {
-  let result = []
-  recipes.map(recipe => {
-    if (recipe.description.toLowerCase().includes(searchvalue.toLowerCase())) result.push(recipe)
-  })
-  return [...new Set(result)]
-}
-
-function searchRecipesByTitleIngredientsDescription(recipes, search) {
-  const tempTitle = searchRecipesByTitle(recipes, search)
-  const tempIngredients = searchRecipesByIngredients(recipes, search)
-  const tempDescription = searchRecipesByDescription(recipes, search)
-
-  let temp = [...tempTitle, ...tempIngredients, ...tempDescription]
-  return [...new Set(temp)]
-}
+import { searchRecipesByTitleIngredientsDescription } from './Search.js'
 
 function searchBox() {
   let filteredRecipes = []
@@ -49,6 +14,12 @@ function searchBox() {
       const value = searchInput.value
       filteredRecipes = searchRecipesByTitleIngredientsDescription(recipes, value)
       updatePage(filteredRecipes, value)
+      saveHistory(filteredRecipes)
+      // menuIngredients()
+    } else if (searchInput.value.length < 3) {
+      filteredRecipes = recipes
+      updatePage(filteredRecipes)
+      saveHistory(filteredRecipes)
     }
   })
 
@@ -61,14 +32,65 @@ function resetInputs() {
   })
 }
 
-function updatePage(filteredRecipes) {
+export function updatePage(filteredRecipes) {
   generateRecipeCard(filteredRecipes)
   generateIngredients(filteredRecipes)
   generateAppliances(filteredRecipes)
   generateUstensils(filteredRecipes)
   updateTotalRecipes(filteredRecipes)
   resetInputs()
-  sessionStorage.setItem('filteredRecipes', JSON.stringify(filteredRecipes))
+  saveHistory(filteredRecipes)
+}
+
+function saveHistory(recipes) {
+  const history = JSON.parse(sessionStorage.getItem('history'))
+  history.push(recipes)
+  sessionStorage.setItem('history', JSON.stringify(history))
 }
 
 searchBox()
+/* export function menuIngredients() {
+  // const currentRecipes = JSON.parse(sessionStorage.getItem('filteredRecipes'))
+  const history = JSON.parse(sessionStorage.getItem('history'))
+  const currentRecipes = history[history.length - 1]
+  console.log(currentRecipes)
+  const ingredientsMenu = document.querySelector('.menu.ingredients')
+  const ingredientsMenuItems = ingredientsMenu.querySelectorAll('.menu.ingredients .menu__item')
+  const chosenTagsDiv = document.querySelector('.chosen-tags')
+  ingredientsMenuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const value = item.querySelector('button').textContent
+      const filteredRecipes = searchRecipesByIngredients(currentRecipes, value)
+      updatePage(filteredRecipes)
+      chosenTagsDiv.classList.replace('closed', 'opened')
+      const chosenTag = document.createElement('div')
+      chosenTag.classList.add('chosen-tag')
+      chosenTag.innerHTML = `
+        <span class='tag-text'>${value}</span>
+        <button>
+          <span class="fa-solid fa-xmark remove-tag"></span>
+        </button>
+      `
+      chosenTagsDiv.appendChild(chosenTag)
+    })
+  })
+} */
+
+/* function menuItemListener(element, category) {
+  const chosenTagsDiv = document.querySelector('.chosen-tags')
+  const history = JSON.parse(sessionStorage.getItem('history'))
+  const currentRecipes = history[history.length - 1]
+  const value = element.querySelector('button').textContent
+  const filteredRecipes = searchRecipesByIngredient(currentRecipes, value)
+  updatePage(filteredRecipes)
+  chosenTagsDiv.classList.replace('closed', 'opened')
+  const chosenTag = document.createElement('div')
+  chosenTag.classList.add('chosen-tag')
+  chosenTag.innerHTML = `
+    <span class='tag-text'>${value}</span>
+    <button>
+      <span class="fa-solid fa-xmark remove-tag"></span>
+    </button>
+  `
+  chosenTagsDiv.appendChild(chosenTag)
+} */

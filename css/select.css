@@ -1,11 +1,23 @@
 /* Filter bar and total recipes */
-.filter-total {
+.filter-total-tags {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 21px 102px 55px;
+  /* padding: 21px 102px 55px; */
   position: relative;
   z-index: 2;
+  flex-wrap: wrap;
+}
+
+.filter-total {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 100%;
+  justify-content: space-between;
+}
+
+.chosen-tags.opened {
+  /* flex: 1; */
 }
 
 .filter-bar {
@@ -52,6 +64,12 @@ div.menu__title {
   justify-content: space-between;
   padding-bottom: 0;
   padding: 16px;
+}
+
+p.menu__title {
+  color: #1b1b1b;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .menu__title button {
@@ -186,7 +204,7 @@ div.menu__title {
 }
 
 @media (min-width: 768px) {
-  .filter-total {
+  .filter-total-tags {
     flex-direction: column;
     padding: 21px 25px 55px;
   }
@@ -194,39 +212,83 @@ div.menu__title {
   .total {
     align-self: center;
     margin: 25px;
-    order: 1;
+    order: 0;
   }
 
   .filters {
-    order: 2;
+    order: 1;
   }
 }
 
 @media (min-width: 1024px) {
-  .filter-total {
+  .filter-total-tags {
     padding: 21px 55px 55px;
+    gap: 21px;
   }
 }
 
 @media (min-width: 1232px) {
-  .filter-total {
+  .filter-total-tags {
     flex-direction: row;
-    padding: 21px 55px 55px;
+    padding: 21px 55px 21px;
   }
 
   .total {
     align-self: flex-start;
     margin: 0;
-    order: 2;
+    order: 1;
   }
 
   .filters {
-    order: 1;
+    order: 0;
   }
 }
 
 @media (min-width: 1440px) {
-  .filter-total {
-    padding: 21px 105px 55px;
+  .filter-total-tags {
+    padding: 21px 105px 21px;
   }
+}
+
+.chosen-tags.closed {
+  display: none;
+}
+
+.chosen-tags.opened {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-inline: 20px;
+}
+
+.chosen-tag {
+  display: inline-flex;
+  padding: 17px 18px;
+  align-items: center;
+  gap: 15px;
+  border-radius: 10px;
+  background: #ffd15b;
+  z-index: 2;
+  height: 53px;
+}
+
+.chosen-tag button {
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  user-select: none;
+}
+
+.tag-text {
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.tags-recipes__container {
+  position: absolute;
+  top: 743px;
 }

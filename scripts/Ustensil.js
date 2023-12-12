@@ -53,7 +53,9 @@ function generateUstensilsAfterSearch(searchValue) {
 
 //Filter ustensils menu by searchValue, either pass recipes or actual ustensils
 function searchUstensil(searchValue) {
-  const filteredRecipes = JSON.parse(sessionStorage.getItem('filteredRecipes'))
+  // const filteredRecipes = JSON.parse(sessionStorage.getItem('filteredRecipes'))
+  const history = JSON.parse(sessionStorage.getItem('history'))
+  const filteredRecipes = history[history.length - 1]
   searchValue = searchValue.toLowerCase()
   const filteredUstensils = []
   filteredRecipes.map(recipe => {

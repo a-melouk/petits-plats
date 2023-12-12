@@ -1,6 +1,7 @@
 import recipes from '../data/recipes.mjs'
 sessionStorage.setItem('recipes', JSON.stringify(recipes))
-sessionStorage.setItem('filteredRecipes', JSON.stringify(recipes))
+// sessionStorage.setItem('filteredRecipes', JSON.stringify(recipes))
+sessionStorage.setItem('history', JSON.stringify([recipes]))
 
 export function generateRecipeCard(recipes) {
   const recipesContainer = document.querySelector('.recipes-container')

@@ -14,7 +14,7 @@ header img {
 }
 
 header h2 {
-  width: clamp(500px, 890px, 100%);
+  width: clamp(500px, 890px, 90%);
   height: 132px;
   color: #ffd15b;
   font-family: Anton;
@@ -22,11 +22,11 @@ header h2 {
   font-weight: 400;
   position: absolute;
   text-align: center;
-  top: 25%;
+  top: 37%;
 }
 
 .header.search-bar {
-  width: clamp(438px, 696px, 954px);
+  width: clamp(438px, 954px, 90%);
   height: 72px;
   align-items: center;
   background: #fff;
@@ -35,7 +35,7 @@ header h2 {
   justify-content: space-between;
   padding: 0px 10px 0px 35px;
   position: absolute;
-  top: 50%;
+  top: 62%;
 }
 
 .header.search-bar input {
@@ -73,7 +73,8 @@ header h2 {
   justify-content: space-between;
   padding-bottom: 55px;
   padding-inline: 102px;
-  position: absolute;
+  /*Needed if I don't want the recipes container to not be affected when menus are opened*/
+  /* position: absolute; */
 }
 
 .recipe-card {
@@ -200,4 +201,13 @@ ul.ingredients {
     column-gap: 40px;
     padding-inline: 102px;
   }
+}
+
+.logo {
+  width: 207px;
+  height: 25px;
+  object-fit: cover;
+  position: absolute;
+  top: 51px;
+  left: 69px;
 }

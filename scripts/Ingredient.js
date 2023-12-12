@@ -1,69 +1,60 @@
 import recipes from '../data/recipes.mjs'
+import { searchRecipesByIngredient } from './Search.js'
+// import { searchRecipesByIngredients } from './Search.js'
+import { updatePage } from './SearchBar.js'
+import { displayChosenTags } from './Utils/Utils.js'
 
-//Used to get all the ingredients from a given recipes array
+//Get all the ingredients from a given recipes array
 function getAllIngredients(recipes) {
   let result = []
   recipes.map(recipe => {
     recipe.ingredients.map(ingredient => {
-      ingredient.ingredient = ingredient.ingredient.toLowerCase()
-      result.push(ingredient.ingredient)
+      result.push(ingredient.ingredient.toLowerCase())
     })
   })
-  return [...new Set(result)]
+  result = [...new Set(result)].sort()
+  return result
 }
 
-//Used to initialize and generate the ingredients menu
+//Generate the ingredients menu from a given recipes array
 export function generateIngredients(recipes) {
-  const allIngredients = getAllIngredients(recipes)
   const ingredientsMenu = document.querySelector('.menu.ingredients .menu__items')
   ingredientsMenu.innerHTML = ''
+  const allIngredients = getAllIngredients(recipes)
+
   allIngredients.map(ingredient => {
     const ingredientItem = document.createElement('li')
     ingredientItem.classList.add('menu__item')
     ingredientItem.innerHTML = `
       <button>${ingredient}</button>
     `
+    ingredientItem.addEventListener('click', () => {
+      const value = ingredientItem.querySelector('button').textContent
+      const filteredRecipes = searchRecipesByIngredient(recipes, value)
+      updatePage(filteredRecipes)
+      displayChosenTags('ingredients', ingredient)
+    })
     ingredientsMenu.appendChild(ingredientItem)
   })
 }
 /* ----------------------------------------------------------------------------------- */
 
-//Listener on the search input of the ingredients menu
-function ingredientMenuSearch() {
+//Ingredient menu search
+function ingredientSearch() {
+  const history = JSON.parse(sessionStorage.getItem('history'))
+  const currentDisplayedRecipes = history[history.length - 1]
+  const currentIngredients = getAllIngredients(currentDisplayedRecipes)
   const ingredientsSearchInput = document.getElementById('ingredient')
   ingredientsSearchInput.addEventListener('keyup', () => {
     const value = ingredientsSearchInput.value
-    generateIngredientsAfterSearch(value)
-  })
-}
-
-//Used to search for an ingredient in the ingredients menu (either pass recipes or filteredRecipes)
-function generateIngredientsAfterSearch(searchValue) {
-  const filteredIngredients = searchIngredient(searchValue)
-  const ingredientsMenu = document.querySelector('.menu.ingredients .menu__items')
-  ingredientsMenu.innerHTML = ''
-  filteredIngredients.map(ingredient => {
-    const ingredientItem = document.createElement('li')
-    ingredientItem.classList.add('menu__item')
-    ingredientItem.innerHTML = `
-      <button>${ingredient}</button>
-    `
-    ingredientsMenu.appendChild(ingredientItem)
-  })
-}
-
-//Filter ingredients menu by searchValue, either pass recipes or actual ingredients
-function searchIngredient(searchValue) {
-  const filteredRecipes = JSON.parse(sessionStorage.getItem('filteredRecipes'))
-  searchValue = searchValue.toLowerCase()
-  const filteredIngredients = []
-  filteredRecipes.map(recipe => {
-    recipe.ingredients.map(ingredient => {
-      if (ingredient.ingredient.includes(searchValue)) filteredIngredients.push(ingredient.ingredient)
+    const filteredIngredients = currentIngredients.filter(ingredient => ingredient.includes(value))
+    const ingredientsMenuItems = document.querySelectorAll('.menu.ingredients .menu__item')
+    ingredientsMenuItems.forEach(item => {
+      if (!filteredIngredients.includes(item.querySelector('button').textContent)) item.classList.add('hidden')
+      else item.classList.remove('hidden')
     })
   })
-  return [...new Set(filteredIngredients)]
 }
 
 generateIngredients(recipes)
-ingredientMenuSearch()
+ingredientSearch()

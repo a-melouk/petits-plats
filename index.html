@@ -15,6 +15,7 @@
   <body>
     <div class="main-container">
       <header>
+        <img class="logo" src="./assets/logo.png" alt="Logo de petits plats" />
         <img src="./assets/header-background.png" alt="Un plat" />
         <h2>Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h2>
 
@@ -26,78 +27,100 @@
         </div>
       </header>
 
-      <div class="filter-total">
-        <div class="filters">
-          <div class="menu closed ingredients">
-            <!-- <div class="menu__header"> -->
-            <div class="menu__title">
-              <p class="menu__title">Ingrédients</p>
-              <button class="menu__arrow">
-                <span class="fa-solid fa-chevron-down"></span>
-              </button>
-            </div>
-            <!-- </div> -->
-            <div class="menu__content closed">
-              <div class="filter search-bar">
-                <input type="text" id="ingredient" />
-                <button>
-                  <span class="fa-solid fa-xmark"></span>
-                </button>
-                <button class="search-button">
-                  <span class="fa-solid fa-magnifying-glass"></span>
+      <div class="filter-total-tags">
+        <div class="filter-total">
+          <div class="filters">
+            <div class="menu closed ingredients">
+              <!-- <div class="menu__header"> -->
+              <div class="menu__title">
+                <p class="menu__title">Ingrédients</p>
+                <button class="menu__arrow">
+                  <span class="fa-solid fa-chevron-down"></span>
                 </button>
               </div>
-              <ul class="menu__items"></ul>
+              <!-- </div> -->
+              <div class="menu__content closed">
+                <div class="filter search-bar">
+                  <input type="text" id="ingredient" />
+                  <button>
+                    <span class="fa-solid fa-xmark"></span>
+                  </button>
+                  <button class="search-button">
+                    <span class="fa-solid fa-magnifying-glass"></span>
+                  </button>
+                </div>
+                <ul class="menu__items"></ul>
+              </div>
             </div>
-          </div>
 
-          <div class="menu closed appliances">
-            <!-- <div class="menu__header"> -->
-            <div class="menu__title">
-              <p class="menu__title">Appareils</p>
-              <button class="menu__arrow">
-                <span class="fa-solid fa-chevron-down"></span>
-              </button>
-            </div>
-            <!-- </div> -->
-            <div class="menu__content closed">
-              <div class="filter search-bar">
-                <input type="text" id="appliance" />
-                <button>
-                  <span class="fa-solid fa-xmark"></span>
-                </button>
-                <button class="search-button">
-                  <span class="fa-solid fa-magnifying-glass"></span>
+            <div class="menu closed appliances">
+              <!-- <div class="menu__header"> -->
+              <div class="menu__title">
+                <p class="menu__title">Appareils</p>
+                <button class="menu__arrow">
+                  <span class="fa-solid fa-chevron-down"></span>
                 </button>
               </div>
-              <ul class="menu__items"></ul>
+              <!-- </div> -->
+              <div class="menu__content closed">
+                <div class="filter search-bar">
+                  <input type="text" id="appliance" />
+                  <button>
+                    <span class="fa-solid fa-xmark"></span>
+                  </button>
+                  <button class="search-button">
+                    <span class="fa-solid fa-magnifying-glass"></span>
+                  </button>
+                </div>
+                <ul class="menu__items"></ul>
+              </div>
             </div>
-          </div>
 
-          <div class="menu closed ustensils">
-            <!-- <div class="menu__header"> -->
-            <div class="menu__title">
-              <p class="menu__title">Ustensils</p>
-              <button class="menu__arrow">
-                <span class="fa-solid fa-chevron-down"></span>
-              </button>
-            </div>
-            <!-- </div> -->
-            <div class="menu__content closed">
-              <div class="filter search-bar">
-                <input type="text" id="ustensil" />
-                <button>
-                  <span class="fa-solid fa-xmark"></span>
-                </button>
-                <button class="search-button">
-                  <span class="fa-solid fa-magnifying-glass"></span>
+            <div class="menu closed ustensils">
+              <!-- <div class="menu__header"> -->
+              <div class="menu__title">
+                <p class="menu__title">Ustensils</p>
+                <button class="menu__arrow">
+                  <span class="fa-solid fa-chevron-down"></span>
                 </button>
               </div>
-              <ul class="menu__items"></ul>
+              <!-- </div> -->
+              <div class="menu__content closed">
+                <div class="filter search-bar">
+                  <input type="text" id="ustensil" />
+                  <button>
+                    <span class="fa-solid fa-xmark"></span>
+                  </button>
+                  <button class="search-button">
+                    <span class="fa-solid fa-magnifying-glass"></span>
+                  </button>
+                </div>
+                <ul class="menu__items"></ul>
+              </div>
             </div>
           </div>
+          <div class="chosen-tags opened">
+            <!-- <div class="chosen-tag">
+              <span class="tag-text">Crème de coco</span>
+              <button data-dashlane-rid="0c683af50ca45861" data-dashlane-label="true" data-form-type="other">
+                <span class="fa-solid fa-xmark remove-tag" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="chosen-tag">
+              <span class="tag-text">Crème de coco</span>
+              <button data-dashlane-rid="0c683af50ca45861" data-dashlane-label="true" data-form-type="other">
+                <span class="fa-solid fa-xmark remove-tag" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="chosen-tag">
+              <span class="tag-text">Crème de coco</span>
+              <button data-dashlane-rid="0c683af50ca45861" data-dashlane-label="true" data-form-type="other">
+                <span class="fa-solid fa-xmark remove-tag" aria-hidden="true"></span>
+              </button>
+            </div> -->
+          </div>
+          <p class="total">1500 recettes</p>
         </div>
-        <p class="total">1500 recettes</p>
       </div>
       <section class="recipes-container"></section>
     </div>
@@ -105,11 +128,30 @@
     <script src="./scripts/Utils/Utils.js" type="module"></script>
     <script src="./scripts/Appliance.js" type="module"></script>
     <script src="./scripts/Menu.js" type="module"></script>
+    <script src="./scripts/SearchBar.js" type="module"></script>
     <script src="./scripts/Ingredient.js" type="module"></script>
     <script src="./scripts/RecipeCard.js" type="module"></script>
-    <script src="./scripts/SearchBar.js" type="module"></script>
     <script src="./scripts/TotalRecipes.js" type="module"></script>
     <script src="./scripts/Ustensil.js" type="module"></script>
+    <script src="./scripts/Search.js" type="module"></script>
     <!-- <script src="./scripts/menu.js" type="module"></script> -->
   </body>
 </html>
+<!-- <div class="chosen-tag">
+            <span class="tag-text">Crème de coco</span>
+            <button data-dashlane-rid="0c683af50ca45861" data-dashlane-label="true" data-form-type="other">
+              <span class="fa-solid fa-xmark remove-tag" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="chosen-tag">
+            <span class="tag-text">Crème de coco</span>
+            <button data-dashlane-rid="0c683af50ca45861" data-dashlane-label="true" data-form-type="other">
+              <span class="fa-solid fa-xmark remove-tag" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="chosen-tag">
+            <span class="tag-text">Crème de coco</span>
+            <button data-dashlane-rid="0c683af50ca45861" data-dashlane-label="true" data-form-type="other">
+              <span class="fa-solid fa-xmark remove-tag" aria-hidden="true"></span>
+            </button>
+          </div> -->
