@@ -72,7 +72,7 @@ header h2 {
   grid-row-gap: 66px;
   justify-content: space-between;
   padding-bottom: 55px;
-  padding-inline: 102px;
+  /* padding-inline: 102px; */
   /*Needed if I don't want the recipes container to not be affected when menus are opened*/
   /* position: absolute; */
 }
@@ -174,7 +174,7 @@ ul.ingredients {
 @media (min-width: 768px) {
   .recipes-container {
     grid-template-columns: repeat(2, 330px);
-    padding-inline: 25px;
+    /* padding-inline: 25px; */
     top: 855px;
   }
 }
@@ -182,16 +182,16 @@ ul.ingredients {
 @media (min-width: 1024px) {
   .recipes-container {
     grid-template-columns: repeat(2, 380px);
-    padding-inline: 55px;
+    /* padding-inline: 55px; */
   }
 }
 
 @media (min-width: 1232px) {
   .recipes-container {
-    grid-template-columns: repeat(3, 340px);
+    grid-template-columns: repeat(3, 305px);
     column-gap: 48px;
-    padding-inline: 55px;
-    top: 769px;
+    /* padding-inline: 55px; */
+    /* top: 769px; */
   }
 }
 
@@ -199,7 +199,7 @@ ul.ingredients {
   .recipes-container {
     grid-template-columns: repeat(3, 380px);
     column-gap: 40px;
-    padding-inline: 102px;
+    /* padding-inline: 102px; */
   }
 }
 
