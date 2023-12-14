@@ -24,6 +24,24 @@ export function searchRecipesByIngredient(recipes, searchValue) {
   return [...new Set(result)]
 }
 
+export function searchRecipesByAppliance(recipes, searchValue) {
+  let result = []
+  recipes.map(recipe => {
+    if (recipe.appliance.toLowerCase() === searchValue.toLowerCase()) result.push(recipe)
+  })
+  return [...new Set(result)]
+}
+
+export function searchRecipesByUstensil(recipes, searchValue) {
+  let result = []
+  recipes.map(recipe => {
+    recipe.ustensils.map(ustensil => {
+      if (ustensil.toLowerCase() === searchValue.toLowerCase()) result.push(recipe)
+    })
+  })
+  return [...new Set(result)]
+}
+
 export function searchRecipesByDescription(recipes, searchvalue) {
   let result = []
   recipes.map(recipe => {

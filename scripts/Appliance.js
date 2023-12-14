@@ -1,75 +1,57 @@
 import recipes from '../data/recipes.mjs'
+import { searchRecipesByAppliance } from './Search.js'
+import { updatePage } from './SearchBar.js'
+import { displayChosenTags } from './Utils/Utils.js'
 
-//Used to get all the appliances from a given recipes array
+//Get all the appliances from a given recipes array
 function getAllAppliances(recipes) {
-  const result = []
+  let result = []
   recipes.map(recipe => {
-    result.push(recipe.appliance)
+    result.push(recipe.appliance.toLowerCase())
   })
-  return [...new Set(result)]
+  result = [...new Set(result)].sort()
+  return result
 }
 
-//Used to initialize and generate the appliances menu
+//Generate the appliances menu from a given recipes array
 export function generateAppliances(recipes) {
-  const allAppliances = getAllAppliances(recipes)
   const appliancesMenu = document.querySelector('.menu.appliances .menu__items')
   appliancesMenu.innerHTML = ''
+  const allAppliances = getAllAppliances(recipes)
+
   allAppliances.map(appliance => {
     const applianceItem = document.createElement('li')
     applianceItem.classList.add('menu__item')
     applianceItem.innerHTML = `
       <button>${appliance}</button>
     `
+    applianceItem.addEventListener('click', () => {
+      const value = applianceItem.querySelector('button').textContent
+      const filteredRecipes = searchRecipesByAppliance(recipes, value)
+      updatePage(filteredRecipes)
+      displayChosenTags('appliances', appliance)
+    })
     appliancesMenu.appendChild(applianceItem)
   })
 }
+/* ----------------------------------------------------------------------------------- */
 
-//Listener on the search input of the appliances menu
-function applianceMenuSearch() {
+//Appliance menu search
+function applianceSearch() {
+  const history = JSON.parse(sessionStorage.getItem('history'))
+  const currentDisplayedRecipes = history[history.length - 1]
+  const currentAppliances = getAllAppliances(currentDisplayedRecipes)
   const appliancesSearchInput = document.getElementById('appliance')
   appliancesSearchInput.addEventListener('keyup', () => {
     const value = appliancesSearchInput.value
-    generateAppliancesAfterSearch(value)
+    const filteredAppliances = currentAppliances.filter(appliance => appliance.includes(value))
+    const appliancesMenuItems = document.querySelectorAll('.menu.appliances .menu__item')
+    appliancesMenuItems.forEach(item => {
+      if (!filteredAppliances.includes(item.querySelector('button').textContent)) item.classList.add('hidden')
+      else item.classList.remove('hidden')
+    })
   })
-}
-
-//Used to search for an appliance in the appliances menu (either pass recipes or filteredRecipes)
-//Either regenerate the whole menu or remove filtered childs
-function generateAppliancesAfterSearch(searchValue) {
-  const filteredAppliances = searchAppliance(searchValue)
-  const appliancesMenu = document.querySelector('.menu.appliances .menu__items')
-  appliancesMenu.innerHTML = ''
-  filteredAppliances.map(appliance => {
-    const applianceItem = document.createElement('li')
-    applianceItem.classList.add('menu__item')
-    applianceItem.innerHTML = `
-      <button>${appliance}</button>
-    `
-    appliancesMenu.appendChild(applianceItem)
-  })
-}
-
-//Filter appliances menu by searchValue, either pass recipes or actual appliances
-function searchAppliance(searchValue) {
-  // const filteredRecipes = JSON.parse(sessionStorage.getItem('filteredRecipes'))
-  const filteredRecipes = JSON.parse(sessionStorage.getItem('history'))
-  searchValue = searchValue.toLowerCase()
-  const filteredAppliances = []
-  filteredRecipes.map(recipe => {
-    if (recipe.appliance.toLowerCase().includes(searchValue)) filteredAppliances.push(recipe.appliance)
-  })
-  return [...new Set(filteredAppliances)]
 }
 
 generateAppliances(recipes)
-applianceMenuSearch()
-
-//  function getRecipesByAppliance(recipes, appliance) {
-//   const result = []
-//   recipes.map(recipe => {
-//     if (recipe.appliance.toLowerCase() === appliance.toLowerCase()) {
-//       result.push(recipe)
-//     }
-//   })
-//   return result
-// }
+applianceSearch()
