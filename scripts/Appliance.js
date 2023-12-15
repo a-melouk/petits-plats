@@ -18,7 +18,7 @@ function applianceSearch() {
   const currentAppliances = getAllAppliances(currentDisplayedRecipes)
   const appliancesSearchInput = document.getElementById('appliance')
   appliancesSearchInput.addEventListener('keyup', () => {
-    const value = appliancesSearchInput.value
+    const value = appliancesSearchInput.value.toLowerCase()
     const filteredAppliances = currentAppliances.filter(appliance => appliance.includes(value))
     const appliancesMenuItems = document.querySelectorAll('.menu.appliances .menu__item')
     appliancesMenuItems.forEach(item => {

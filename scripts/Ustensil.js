@@ -20,7 +20,7 @@ function ustensilSearch() {
   const currentUstensils = getAllUstensils(currentDisplayedRecipes)
   const ustensilsSearchInput = document.getElementById('ustensil')
   ustensilsSearchInput.addEventListener('keyup', () => {
-    const value = ustensilsSearchInput.value
+    const value = ustensilsSearchInput.value.toLowerCase()
     const filteredUstensils = currentUstensils.filter(ustensil => ustensil.includes(value))
     const ustensilsMenuItems = document.querySelectorAll('.menu.ustensils .menu__item')
     ustensilsMenuItems.forEach(item => {

@@ -22,7 +22,7 @@ function ingredientSearch() {
   const currentIngredients = getAllIngredients(currentDisplayedRecipes)
   const ingredientsSearchInput = document.getElementById('ingredient')
   ingredientsSearchInput.addEventListener('keyup', () => {
-    const value = ingredientsSearchInput.value
+    const value = ingredientsSearchInput.value.toLowerCase()
     const filteredIngredients = currentIngredients.filter(ingredient => ingredient.includes(value))
     const ingredientsMenuItems = document.querySelectorAll('.menu.ingredients .menu__item')
     ingredientsMenuItems.forEach(item => {
