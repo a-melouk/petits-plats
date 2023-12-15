@@ -1,10 +1,8 @@
 import recipes from '../data/recipes.mjs'
-import { searchRecipesByAppliance } from './Search.js'
-import { updatePage } from './SearchBar.js'
-import { displayChosenTags } from './Utils/Utils.js'
+import { generateMenu } from './GenerateMenu.js'
 
 //Get all the appliances from a given recipes array
-function getAllAppliances(recipes) {
+export function getAllAppliances(recipes) {
   let result = []
   recipes.map(recipe => {
     result.push(recipe.appliance.toLowerCase())
@@ -12,29 +10,6 @@ function getAllAppliances(recipes) {
   result = [...new Set(result)].sort()
   return result
 }
-
-//Generate the appliances menu from a given recipes array
-export function generateAppliances(recipes) {
-  const appliancesMenu = document.querySelector('.menu.appliances .menu__items')
-  appliancesMenu.innerHTML = ''
-  const allAppliances = getAllAppliances(recipes)
-
-  allAppliances.map(appliance => {
-    const applianceItem = document.createElement('li')
-    applianceItem.classList.add('menu__item')
-    applianceItem.innerHTML = `
-      <button>${appliance}</button>
-    `
-    applianceItem.addEventListener('click', () => {
-      const value = applianceItem.querySelector('button').textContent
-      const filteredRecipes = searchRecipesByAppliance(recipes, value)
-      updatePage(filteredRecipes)
-      displayChosenTags('appliances', appliance)
-    })
-    appliancesMenu.appendChild(applianceItem)
-  })
-}
-/* ----------------------------------------------------------------------------------- */
 
 //Appliance menu search
 function applianceSearch() {
@@ -52,6 +27,5 @@ function applianceSearch() {
     })
   })
 }
-
-generateAppliances(recipes)
+generateMenu(recipes, 'appliances')
 applianceSearch()

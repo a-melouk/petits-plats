@@ -1,11 +1,8 @@
 import recipes from '../data/recipes.mjs'
-import { searchRecipesByUstensil } from './Search.js'
-// import { searchRecipesByUstensils } from './Search.js'
-import { updatePage } from './SearchBar.js'
-import { displayChosenTags } from './Utils/Utils.js'
+import { generateMenu } from './GenerateMenu.js'
 
 //Get all the ustensils from a given recipes array
-function getAllUstensils(recipes) {
+export function getAllUstensils(recipes) {
   let result = []
   recipes.map(recipe => {
     recipe.ustensils.map(ustensil => {
@@ -15,29 +12,6 @@ function getAllUstensils(recipes) {
   result = [...new Set(result)].sort()
   return result
 }
-
-//Generate the ustensils menu from a given recipes array
-export function generateUstensils(recipes) {
-  const ustensilsMenu = document.querySelector('.menu.ustensils .menu__items')
-  ustensilsMenu.innerHTML = ''
-  const allUstensils = getAllUstensils(recipes)
-
-  allUstensils.map(ustensil => {
-    const ustensilItem = document.createElement('li')
-    ustensilItem.classList.add('menu__item')
-    ustensilItem.innerHTML = `
-      <button>${ustensil}</button>
-    `
-    ustensilItem.addEventListener('click', () => {
-      const value = ustensilItem.querySelector('button').textContent
-      const filteredRecipes = searchRecipesByUstensil(recipes, value)
-      updatePage(filteredRecipes)
-      displayChosenTags('ustensils', ustensil)
-    })
-    ustensilsMenu.appendChild(ustensilItem)
-  })
-}
-/* ----------------------------------------------------------------------------------- */
 
 //Ustensil menu search
 function ustensilSearch() {
@@ -55,6 +29,5 @@ function ustensilSearch() {
     })
   })
 }
-
-generateUstensils(recipes)
+generateMenu(recipes, 'ustensils')
 ustensilSearch()
