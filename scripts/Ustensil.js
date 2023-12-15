@@ -19,6 +19,14 @@ function ustensilSearch() {
   const currentDisplayedRecipes = history[history.length - 1]
   const currentUstensils = getAllUstensils(currentDisplayedRecipes)
   const ustensilsSearchInput = document.getElementById('ustensil')
+  const resetInput = ustensilsSearchInput.nextElementSibling
+  resetInput.addEventListener('click', () => {
+    ustensilsSearchInput.value = ''
+    const ustensilsMenuItems = document.querySelectorAll('.menu.ustensils .menu__item')
+    ustensilsMenuItems.forEach(item => {
+      item.classList.remove('hidden')
+    })
+  })
   ustensilsSearchInput.addEventListener('keyup', () => {
     const value = ustensilsSearchInput.value.toLowerCase()
     const filteredUstensils = currentUstensils.filter(ustensil => ustensil.includes(value))

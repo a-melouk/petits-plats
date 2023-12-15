@@ -1,5 +1,7 @@
 import recipes from '../data/recipes.mjs'
+sessionStorage.setItem('recipes', JSON.stringify([recipes]))
 sessionStorage.setItem('history', JSON.stringify([recipes]))
+sessionStorage.setItem('searchBar', JSON.stringify([recipes]))
 sessionStorage.setItem('tags', JSON.stringify({ ingredients: [], appliances: [], ustensils: [] }))
 
 export function generateRecipeCard(recipes) {

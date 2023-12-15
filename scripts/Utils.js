@@ -9,10 +9,16 @@ export function containsWord(originalString, wordToTest) {
   return regex.test(originalString)
 }
 
-export function saveChosenTags(category, tag) {
+export function addChosenTag(category, tag) {
   const tags = JSON.parse(sessionStorage.getItem('tags'))
   tags[category].push(tag)
   tags[category] = [...new Set(tags[category])]
+  sessionStorage.setItem('tags', JSON.stringify(tags))
+}
+
+export function removeChosenTagFromSelected(category, tag) {
+  const tags = JSON.parse(sessionStorage.getItem('tags'))
+  tags[category] = tags[category].filter(item => item !== tag)
   sessionStorage.setItem('tags', JSON.stringify(tags))
 }
 
@@ -53,6 +59,22 @@ export function updatePage(filteredRecipes) {
 
   resetInputs()
   saveCurrentRecipes(filteredRecipes)
+  // filteredRecipes.forEach(recipe => {
+  //   displayRecipe(recipe)
+  // })
+}
+
+export function updatePageFromSearchBar(filteredRecipes) {
+  generateRecipeCard(filteredRecipes)
+  generateMenu(filteredRecipes, 'ingredients')
+  generateMenu(filteredRecipes, 'appliances')
+  generateMenu(filteredRecipes, 'ustensils')
+
+  updateTotalRecipes(filteredRecipes)
+  resetInputs()
+  const history = JSON.parse(sessionStorage.getItem('searchBar'))
+  history[0] = filteredRecipes
+  sessionStorage.setItem('searchBar', JSON.stringify(history))
   // filteredRecipes.forEach(recipe => {
   //   displayRecipe(recipe)
   // })

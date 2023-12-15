@@ -17,6 +17,14 @@ function applianceSearch() {
   const currentDisplayedRecipes = history[history.length - 1]
   const currentAppliances = getAllAppliances(currentDisplayedRecipes)
   const appliancesSearchInput = document.getElementById('appliance')
+  const resetInput = appliancesSearchInput.nextElementSibling
+  resetInput.addEventListener('click', () => {
+    appliancesSearchInput.value = ''
+    const appliancesMenuItems = document.querySelectorAll('.menu.appliances .menu__item')
+    appliancesMenuItems.forEach(item => {
+      item.classList.remove('hidden')
+    })
+  })
   appliancesSearchInput.addEventListener('keyup', () => {
     const value = appliancesSearchInput.value.toLowerCase()
     const filteredAppliances = currentAppliances.filter(appliance => appliance.includes(value))
