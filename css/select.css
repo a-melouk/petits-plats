@@ -1,19 +1,19 @@
-/* Filter bar and total recipes */
 .filter-total {
   width: 100%;
   display: flex;
   justify-content: space-between;
   position: relative;
   z-index: 2;
+  padding-inline: 102px;
 }
 
 .tags-recipes {
   display: flex;
   flex-direction: column;
   gap: 43px;
-  padding-inline: 102px;
   position: absolute;
   top: 727px;
+  width: 100%;
 }
 
 .filter-bar {
@@ -23,7 +23,6 @@
 
 .filters {
   display: flex;
-  gap: 66px;
   justify-content: space-between;
 }
 
@@ -99,7 +98,6 @@ p.menu__title {
 }
 
 .menu__content.opened {
-  /* max-height: 289px; */
   max-height: 245px;
   transition: max-height 300ms ease-out;
   height: fit-content;
@@ -147,11 +145,6 @@ p.menu__title {
   margin-right: 10px;
 }
 
-/* .menu__items.closed {
-  max-height: 0;
-  transition: max-height 300ms ease-out;
-} */
-
 .menu__items {
   width: 100%;
   max-height: 200px;
@@ -182,7 +175,6 @@ p.menu__title {
 
 .menu__item:hover {
   background-color: #ffd15b;
-  /* border-radius: 15px; */
 }
 
 .menu__item button {
@@ -212,7 +204,6 @@ p.menu__title {
   flex-wrap: wrap;
   gap: 20px;
   padding-top: 21px;
-  /* padding-inline: 20px; */
 }
 
 .chosen-tag {
@@ -222,7 +213,6 @@ p.menu__title {
   gap: 15px;
   border-radius: 10px;
   background: #ffd15b;
-  /* z-index: 2; */
   height: 53px;
 }
 
@@ -250,24 +240,28 @@ p.menu__title {
 @media (min-width: 768px) {
   .filter-total {
     flex-direction: column;
-    padding: 21px 25px 55px;
+    padding: 21px 25px 0px;
+  }
+
+  .chosen-tags.opened {
+    padding-bottom: 40px;
+  }
+
+  .tags-recipes {
+    gap: 0px;
+    padding-inline: 25px;
+    padding-block: 40px 55px;
   }
 
   .total {
     align-self: center;
-    margin: 25px;
+    margin: 10px;
     order: 0;
   }
 
   .filters {
     order: 1;
-  }
-}
-
-@media (min-width: 1024px) {
-  .filter-total {
-    /* padding: 21px 55px 55px; */
-    gap: 21px;
+    gap: 0;
   }
 }
 
@@ -277,10 +271,6 @@ p.menu__title {
     padding: 21px 102px 0px 102px;
   }
 
-  /* .tags-recipes {
-    padding: 21px 102px 0px 102px;
-  } */
-
   .total {
     align-self: flex-start;
     margin: 0;
@@ -289,11 +279,11 @@ p.menu__title {
 
   .filters {
     order: 0;
+    gap: 66px;
   }
-}
 
-@media (min-width: 1440px) {
-  .filter-total {
-    /* padding: 21px 105px 21px; */
+  .tags-recipes {
+    padding-inline: 102px;
+    padding-block: 0px;
   }
 }
