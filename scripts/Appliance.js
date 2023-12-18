@@ -1,6 +1,3 @@
-import recipes from '../data/recipes.mjs'
-import { generateMenu } from './GenerateMenu.js'
-
 //Get all the appliances from a given recipes array
 export function getAllAppliances(recipes) {
   let result = []
@@ -12,9 +9,10 @@ export function getAllAppliances(recipes) {
 }
 
 //Appliance menu search
-function applianceSearch() {
+export function applianceSearch() {
   const history = JSON.parse(sessionStorage.getItem('history'))
-  const currentDisplayedRecipes = history[history.length - 1]
+  // const currentDisplayedRecipes = history[history.length - 1]
+  const currentDisplayedRecipes = history[0]
   const currentAppliances = getAllAppliances(currentDisplayedRecipes)
   const appliancesSearchInput = document.getElementById('appliance')
   const resetInput = appliancesSearchInput.nextElementSibling
@@ -35,5 +33,3 @@ function applianceSearch() {
     })
   })
 }
-generateMenu(recipes, 'appliances')
-applianceSearch()

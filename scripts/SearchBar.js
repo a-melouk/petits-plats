@@ -1,8 +1,8 @@
 import recipes from '../data/recipes.mjs'
 
-import { updatePage, updatePageFromSearchBar } from './Utils.js'
+import { updatePage } from './Utils.js'
 import { searchRecipesByTitleIngredientsDescription } from './Search/SearchBar.js'
-function searchBox() {
+export function searchBox() {
   let filteredRecipes = []
   let timeout = null
   const searchInput = document.getElementById('search-value')
@@ -14,17 +14,13 @@ function searchBox() {
       if (searchInput.value.length >= 3) {
         const value = searchInput.value
         filteredRecipes = searchRecipesByTitleIngredientsDescription(recipes, value)
-        // updatePage(filteredRecipes)
-        updatePageFromSearchBar(filteredRecipes)
+        updatePage(filteredRecipes, 'searchBar')
       } else if (searchInput.value.length < 3) {
         filteredRecipes = recipes
-        // updatePage(filteredRecipes)
-        updatePageFromSearchBar(filteredRecipes)
+        updatePage(filteredRecipes, 'searchBar')
       }
     }, 200)
   })
 
   return filteredRecipes
 }
-
-searchBox()

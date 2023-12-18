@@ -3,7 +3,7 @@ import { getAllIngredients } from './Ingredient.js'
 import { getAllAppliances } from './Appliance.js'
 import { getAllUstensils } from './Ustensil.js'
 import { addChosenTag, updatePage } from './Utils.js'
-import { chosenTags } from './Menu.js'
+import { displayChosenTags } from './Menu.js'
 
 export function generateMenu(recipes, category) {
   let tags = JSON.parse(sessionStorage.getItem('tags'))
@@ -41,8 +41,8 @@ export function generateMenu(recipes, category) {
       addChosenTag(category, value)
       tags = JSON.parse(sessionStorage.getItem('tags'))
       const filteredRecipes = searchRecipesByTags(recipes, tags)
-      chosenTags(item, category)
-      updatePage(filteredRecipes)
+      displayChosenTags(item, category)
+      updatePage(filteredRecipes, 'history')
     })
     menu.appendChild(listItem)
   })

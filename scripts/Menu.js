@@ -2,7 +2,7 @@ import { removeChosenTagFromSelected, updatePage } from './Utils.js'
 import { searchRecipesByTags } from './Search/Tags.js'
 // import { updatePage } from './Utils.js'
 
-function menuShowHide(filter) {
+export function menuShowHide(filter) {
   const menu = document.querySelector(`.menu.${filter}`)
   const otherMenus = document.querySelectorAll(`.menu:not(.${filter})`)
   const menuArrow = menu.querySelector('.menu__arrow')
@@ -12,33 +12,36 @@ function menuShowHide(filter) {
     const menuSearchBar = menu.querySelector('.filter.search-bar')
     const menuContent = menu.querySelector('.menu__content')
     if (menu.classList.contains('closed')) {
-      menu.classList.replace('closed', 'opened')
       menuArrow.classList.add('fa-rotate-180')
-      menuItems.classList.replace('closed', 'opened')
-      menuSearchBar.classList.replace('closed', 'opened')
-      menuContent.classList.replace('closed', 'opened')
-      otherMenus.forEach(menu => {
-        menu.classList.replace('opened', 'closed')
-        const menuArrow = menu.querySelector('.menu__arrow')
-        const menuItems = menu.querySelector('.menu__items')
-        const menuSearchBar = menu.querySelector('.filter.search-bar')
-        const menuContent = menu.querySelector('.menu__content')
-        menuItems.classList.replace('opened', 'closed')
-        menuSearchBar.classList.replace('opened', 'closed')
-        menuContent.classList.replace('opened', 'closed')
-        menuArrow.classList.remove('fa-rotate-180')
+      changeClosedToOpened([menu, menuItems, menuSearchBar, menuContent])
+      otherMenus.forEach(otherMenu => {
+        const otherMenuArrow = otherMenu.querySelector('.menu__arrow')
+        const otherMenuItems = otherMenu.querySelector('.menu__items')
+        const otherMenuSearchBar = otherMenu.querySelector('.filter.search-bar')
+        const otherMenuContent = otherMenu.querySelector('.menu__content')
+        changeOpenedToClosed([otherMenu, otherMenuItems, otherMenuSearchBar, otherMenuContent])
+        otherMenuArrow.classList.remove('fa-rotate-180')
       })
     } else {
       menuArrow.classList.remove('fa-rotate-180')
-      menu.classList.replace('opened', 'closed')
-      menuItems.classList.replace('opened', 'closed')
-      menuSearchBar.classList.replace('opened', 'closed')
-      menuContent.classList.replace('opened', 'closed')
+      changeOpenedToClosed([menu, menuItems, menuSearchBar, menuContent])
     }
   })
 }
 
-export function chosenTags(value, category) {
+function changeClosedToOpened(elementsArray) {
+  elementsArray.forEach(element => {
+    element.classList.replace('closed', 'opened')
+  })
+}
+
+function changeOpenedToClosed(elementsArray) {
+  elementsArray.forEach(element => {
+    element.classList.replace('opened', 'closed')
+  })
+}
+
+export function displayChosenTags(value, category) {
   const chosenTagsDiv = document.querySelector('.chosen-tags')
   chosenTagsDiv.classList.replace('closed', 'opened')
   const chosenTag = document.createElement('div')
@@ -63,14 +66,8 @@ export function chosenTags(value, category) {
     const tags = JSON.parse(sessionStorage.getItem('tags'))
     console.log(originalRecipes, tags)
     const filteredRecipes = searchRecipesByTags(originalRecipes, tags)
-    updatePage(filteredRecipes)
+    updatePage(filteredRecipes, 'history')
     chosenTag.remove()
-    // chosenTags(item, category)
   })
   chosenTagsDiv.appendChild(chosenTag)
 }
-
-// menuShowHide()
-menuShowHide('ingredients')
-menuShowHide('appliances')
-menuShowHide('ustensils')

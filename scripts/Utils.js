@@ -43,39 +43,19 @@ function resetInputs() {
   })
 }
 
-function saveCurrentRecipes(recipes) {
-  const history = JSON.parse(sessionStorage.getItem('history'))
+function saveCurrentRecipes(recipes, key) {
+  const history = JSON.parse(sessionStorage.getItem(key))
   history[0] = recipes
-  sessionStorage.setItem('history', JSON.stringify(history))
+  sessionStorage.setItem(key, JSON.stringify(history))
 }
 
-export function updatePage(filteredRecipes) {
+export function updatePage(filteredRecipes, key) {
   generateRecipeCard(filteredRecipes)
   generateMenu(filteredRecipes, 'ingredients')
   generateMenu(filteredRecipes, 'appliances')
   generateMenu(filteredRecipes, 'ustensils')
-
   updateTotalRecipes(filteredRecipes)
 
   resetInputs()
-  saveCurrentRecipes(filteredRecipes)
-  // filteredRecipes.forEach(recipe => {
-  //   displayRecipe(recipe)
-  // })
-}
-
-export function updatePageFromSearchBar(filteredRecipes) {
-  generateRecipeCard(filteredRecipes)
-  generateMenu(filteredRecipes, 'ingredients')
-  generateMenu(filteredRecipes, 'appliances')
-  generateMenu(filteredRecipes, 'ustensils')
-
-  updateTotalRecipes(filteredRecipes)
-  resetInputs()
-  const history = JSON.parse(sessionStorage.getItem('searchBar'))
-  history[0] = filteredRecipes
-  sessionStorage.setItem('searchBar', JSON.stringify(history))
-  // filteredRecipes.forEach(recipe => {
-  //   displayRecipe(recipe)
-  // })
+  saveCurrentRecipes(filteredRecipes, key)
 }

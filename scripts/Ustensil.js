@@ -1,6 +1,3 @@
-import recipes from '../data/recipes.mjs'
-import { generateMenu } from './GenerateMenu.js'
-
 //Get all the ustensils from a given recipes array
 export function getAllUstensils(recipes) {
   let result = []
@@ -14,9 +11,10 @@ export function getAllUstensils(recipes) {
 }
 
 //Ustensil menu search
-function ustensilSearch() {
+export function ustensilSearch() {
   const history = JSON.parse(sessionStorage.getItem('history'))
-  const currentDisplayedRecipes = history[history.length - 1]
+  // const currentDisplayedRecipes = history[history.length - 1]
+  const currentDisplayedRecipes = history[0]
   const currentUstensils = getAllUstensils(currentDisplayedRecipes)
   const ustensilsSearchInput = document.getElementById('ustensil')
   const resetInput = ustensilsSearchInput.nextElementSibling
@@ -37,5 +35,3 @@ function ustensilSearch() {
     })
   })
 }
-generateMenu(recipes, 'ustensils')
-ustensilSearch()

@@ -1,6 +1,3 @@
-import recipes from '../data/recipes.mjs'
-import { generateMenu } from './GenerateMenu.js'
-
 //Get all the ingredients from a given recipes array
 export function getAllIngredients(recipes) {
   let result = []
@@ -14,11 +11,11 @@ export function getAllIngredients(recipes) {
 }
 
 //Ingredient menu search
-function ingredientSearch() {
+export function ingredientSearch() {
   const history = JSON.parse(sessionStorage.getItem('history'))
-  // const selectedIngredients = JSON.parse(sessionStorage.getItem('tags')).ingredients
 
-  const currentDisplayedRecipes = history[history.length - 1]
+  // const currentDisplayedRecipes = history[history.length - 1]
+  const currentDisplayedRecipes = history[0]
   const currentIngredients = getAllIngredients(currentDisplayedRecipes)
   const ingredientsSearchInput = document.getElementById('ingredient')
   const resetInput = ingredientsSearchInput.nextElementSibling
@@ -39,6 +36,3 @@ function ingredientSearch() {
     })
   })
 }
-
-generateMenu(recipes, 'ingredients')
-ingredientSearch()
