@@ -1,7 +1,8 @@
-import recipes from '../data/recipes.mjs'
-sessionStorage.setItem('recipes', JSON.stringify(recipes))
-// sessionStorage.setItem('filteredRecipes', JSON.stringify(recipes))
+/* import recipes from '../data/recipes.mjs'
+sessionStorage.setItem('recipes', JSON.stringify([recipes]))
 sessionStorage.setItem('history', JSON.stringify([recipes]))
+sessionStorage.setItem('searchBar', JSON.stringify([recipes]))
+sessionStorage.setItem('tags', JSON.stringify({ ingredients: [], appliances: [], ustensils: [] })) */
 
 export function generateRecipeCard(recipes) {
   const recipesContainer = document.querySelector('.recipes-container')
@@ -34,5 +35,3 @@ export function generateRecipeCard(recipes) {
     recipesContainer.appendChild(recipeCard)
   })
 }
-
-generateRecipeCard(recipes)

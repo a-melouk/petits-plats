@@ -1,11 +1,4 @@
-const selectedIngredients = []
-const selectedAppliances = []
-const selectedUstensils = []
-sessionStorage.setItem('selectedIngredients', JSON.stringify(selectedIngredients))
-sessionStorage.setItem('selectedAppliances', JSON.stringify(selectedAppliances))
-sessionStorage.setItem('selectedUstensils', JSON.stringify(selectedUstensils))
-
-export function searchRecipesByTitle(recipes, searchValue) {
+function searchRecipesByTitle(recipes, searchValue) {
   let result = []
   recipes.map(recipe => {
     if (recipe.name.toLowerCase().includes(searchValue.toLowerCase())) result.push(recipe)
@@ -13,7 +6,7 @@ export function searchRecipesByTitle(recipes, searchValue) {
   return [...new Set(result)]
 }
 
-export function searchRecipesByIngredient(recipes, searchValue) {
+function searchRecipesByIngredient(recipes, searchValue) {
   let result = []
   recipes.map(recipe => {
     recipe.ingredients.map(ingredient => {
@@ -24,7 +17,7 @@ export function searchRecipesByIngredient(recipes, searchValue) {
   return [...new Set(result)]
 }
 
-export function searchRecipesByDescription(recipes, searchvalue) {
+function searchRecipesByDescription(recipes, searchvalue) {
   let result = []
   recipes.map(recipe => {
     if (recipe.description.toLowerCase().includes(searchvalue.toLowerCase())) result.push(recipe)
@@ -40,18 +33,3 @@ export function searchRecipesByTitleIngredientsDescription(recipes, search) {
   let temp = [...tempTitle, ...tempIngredients, ...tempDescription]
   return [...new Set(temp)]
 }
-
-// export function searchRecipesByIngredients(recipes, ingredientsArray) {
-//   let result = []
-//   let count = 0
-//   recipes.map(recipe => {
-//     ingredientsArray.map(ingredient => {
-//       recipe.ingredients.map(recipeIngredient => {
-//         if (recipeIngredient.ingredient.toLowerCase() === ingredient.toLowerCase()) count++
-//       })
-//     })
-//     if (count === ingredientsArray.length) result.push(recipe)
-//     count = 0
-//   })
-//   return [...new Set(result)]
-// }

@@ -1,23 +1,19 @@
-/* Filter bar and total recipes */
-.filter-total-tags {
+.filter-total {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  /* padding: 21px 102px 55px; */
   position: relative;
   z-index: 2;
-  flex-wrap: wrap;
+  padding-inline: 102px;
 }
 
-.filter-total {
+.tags-recipes {
   display: flex;
-  flex-direction: row;
-  flex: 0 0 100%;
-  justify-content: space-between;
-}
-
-.chosen-tags.opened {
-  /* flex: 1; */
+  flex-direction: column;
+  gap: 43px;
+  position: absolute;
+  top: 727px;
+  width: 100%;
 }
 
 .filter-bar {
@@ -27,7 +23,6 @@
 
 .filters {
   display: flex;
-  gap: 66px;
   justify-content: space-between;
 }
 
@@ -38,11 +33,14 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  cursor: pointer;
 }
 
 .menu.opened {
   max-height: 315px;
   transition: max-height 300ms ease-out;
+  z-index: 3;
+  height: fit-content;
 }
 
 .menu.closed {
@@ -101,8 +99,9 @@ p.menu__title {
 }
 
 .menu__content.opened {
-  max-height: 289px;
+  max-height: 245px;
   transition: max-height 300ms ease-out;
+  height: fit-content;
 }
 
 .filter.search-bar {
@@ -147,11 +146,6 @@ p.menu__title {
   margin-right: 10px;
 }
 
-/* .menu__items.closed {
-  max-height: 0;
-  transition: max-height 300ms ease-out;
-} */
-
 .menu__items {
   width: 100%;
   max-height: 200px;
@@ -182,7 +176,6 @@ p.menu__title {
 
 .menu__item:hover {
   background-color: #ffd15b;
-  border-radius: 15px;
 }
 
 .menu__item button {
@@ -203,53 +196,6 @@ p.menu__title {
   font-size: 21px;
 }
 
-@media (min-width: 768px) {
-  .filter-total-tags {
-    flex-direction: column;
-    padding: 21px 25px 55px;
-  }
-
-  .total {
-    align-self: center;
-    margin: 25px;
-    order: 0;
-  }
-
-  .filters {
-    order: 1;
-  }
-}
-
-@media (min-width: 1024px) {
-  .filter-total-tags {
-    padding: 21px 55px 55px;
-    gap: 21px;
-  }
-}
-
-@media (min-width: 1232px) {
-  .filter-total-tags {
-    flex-direction: row;
-    padding: 21px 55px 21px;
-  }
-
-  .total {
-    align-self: flex-start;
-    margin: 0;
-    order: 1;
-  }
-
-  .filters {
-    order: 0;
-  }
-}
-
-@media (min-width: 1440px) {
-  .filter-total-tags {
-    padding: 21px 105px 21px;
-  }
-}
-
 .chosen-tags.closed {
   display: none;
 }
@@ -258,7 +204,7 @@ p.menu__title {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding-inline: 20px;
+  padding-top: 21px;
 }
 
 .chosen-tag {
@@ -268,7 +214,6 @@ p.menu__title {
   gap: 15px;
   border-radius: 10px;
   background: #ffd15b;
-  z-index: 2;
   height: 53px;
 }
 
@@ -291,4 +236,55 @@ p.menu__title {
 .tags-recipes__container {
   position: absolute;
   top: 743px;
+}
+
+@media (min-width: 768px) {
+  .filter-total {
+    flex-direction: column;
+    padding: 21px 25px 0px;
+  }
+
+  .chosen-tags.opened {
+    padding-bottom: 40px;
+  }
+
+  .tags-recipes {
+    gap: 0px;
+    padding-inline: 25px;
+    padding-block: 40px 55px;
+  }
+
+  .total {
+    align-self: center;
+    margin: 10px;
+    order: 0;
+  }
+
+  .filters {
+    order: 1;
+    gap: 0;
+  }
+}
+
+@media (min-width: 1232px) {
+  .filter-total {
+    flex-direction: row;
+    padding: 21px 102px 0px 102px;
+  }
+
+  .total {
+    align-self: flex-start;
+    margin: 0;
+    order: 1;
+  }
+
+  .filters {
+    order: 0;
+    gap: 66px;
+  }
+
+  .tags-recipes {
+    padding-inline: 102px;
+    padding-block: 0px;
+  }
 }

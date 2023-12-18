@@ -1,82 +1,37 @@
-import recipes from '../data/recipes.mjs'
-
-//Used to get all the ustensils from a given recipes array
-function getAllUstensils(recipes) {
-  const result = []
+//Get all the ustensils from a given recipes array
+export function getAllUstensils(recipes) {
+  let result = []
   recipes.map(recipe => {
     recipe.ustensils.map(ustensil => {
-      result.push(ustensil)
+      result.push(ustensil.toLowerCase())
     })
   })
-  return [...new Set(result)]
+  result = [...new Set(result)].sort()
+  return result
 }
 
-//Used to initialize and generate the ustensils menu
-export function generateUstensils(recipes) {
-  const allUstensils = getAllUstensils(recipes)
-  const ustensilsMenu = document.querySelector('.menu.ustensils .menu__items')
-  ustensilsMenu.innerHTML = ''
-  allUstensils.map(ustensil => {
-    const ustensilItem = document.createElement('li')
-    ustensilItem.classList.add('menu__item')
-    ustensilItem.innerHTML = `
-      <button>${ustensil}</button>
-    `
-    ustensilsMenu.appendChild(ustensilItem)
-  })
-}
-
-//Listener on the search input of the ustensils menu
-function ustensilMenuSearch() {
-  const ustensilsSearchInput = document.getElementById('ustensil')
-  ustensilsSearchInput.addEventListener('keyup', () => {
-    const value = ustensilsSearchInput.value
-    generateUstensilsAfterSearch(value)
-  })
-}
-
-//Used to search for an ustensil in the ustensils menu (either pass recipes or filteredRecipes)
-//Either regenerate the whole menu or remove filtered childs
-function generateUstensilsAfterSearch(searchValue) {
-  const filteredUstensils = searchUstensil(searchValue)
-  const ustensilsMenu = document.querySelector('.menu.ustensils .menu__items')
-  ustensilsMenu.innerHTML = ''
-  filteredUstensils.map(ustensil => {
-    const ustensilItem = document.createElement('li')
-    ustensilItem.classList.add('menu__item')
-    ustensilItem.innerHTML = `
-      <button>${ustensil}</button>
-    `
-    ustensilsMenu.appendChild(ustensilItem)
-  })
-}
-
-//Filter ustensils menu by searchValue, either pass recipes or actual ustensils
-function searchUstensil(searchValue) {
-  // const filteredRecipes = JSON.parse(sessionStorage.getItem('filteredRecipes'))
+//Ustensil menu search
+export function ustensilSearch() {
   const history = JSON.parse(sessionStorage.getItem('history'))
-  const filteredRecipes = history[history.length - 1]
-  searchValue = searchValue.toLowerCase()
-  const filteredUstensils = []
-  filteredRecipes.map(recipe => {
-    recipe.ustensils.map(ustensil => {
-      if (ustensil.includes(searchValue)) filteredUstensils.push(ustensil)
+  // const currentDisplayedRecipes = history[history.length - 1]
+  const currentDisplayedRecipes = history[0]
+  const currentUstensils = getAllUstensils(currentDisplayedRecipes)
+  const ustensilsSearchInput = document.getElementById('ustensil')
+  const resetInput = ustensilsSearchInput.nextElementSibling
+  resetInput.addEventListener('click', () => {
+    ustensilsSearchInput.value = ''
+    const ustensilsMenuItems = document.querySelectorAll('.menu.ustensils .menu__item')
+    ustensilsMenuItems.forEach(item => {
+      item.classList.remove('hidden')
     })
   })
-  return [...new Set(filteredUstensils)]
+  ustensilsSearchInput.addEventListener('keyup', () => {
+    const value = ustensilsSearchInput.value.toLowerCase()
+    const filteredUstensils = currentUstensils.filter(ustensil => ustensil.includes(value))
+    const ustensilsMenuItems = document.querySelectorAll('.menu.ustensils .menu__item')
+    ustensilsMenuItems.forEach(item => {
+      if (!filteredUstensils.includes(item.querySelector('button').textContent)) item.classList.add('hidden')
+      else item.classList.remove('hidden')
+    })
+  })
 }
-
-generateUstensils(recipes)
-ustensilMenuSearch()
-
-//  function getRecipesByUstensil(recipes, ustensil) {
-//   let result = []
-//   recipes.map(recipe => {
-//     recipe.ustensils.map(ustensils => {
-//       if (ustensils.toLowerCase() === ustensil.toLowerCase()) {
-//         result.push(recipe)
-//       }
-//     })
-//   })
-//   return result
-// }

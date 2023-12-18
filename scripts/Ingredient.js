@@ -1,11 +1,5 @@
-import recipes from '../data/recipes.mjs'
-import { searchRecipesByIngredient } from './Search.js'
-// import { searchRecipesByIngredients } from './Search.js'
-import { updatePage } from './SearchBar.js'
-import { displayChosenTags } from './Utils/Utils.js'
-
 //Get all the ingredients from a given recipes array
-function getAllIngredients(recipes) {
+export function getAllIngredients(recipes) {
   let result = []
   recipes.map(recipe => {
     recipe.ingredients.map(ingredient => {
@@ -16,37 +10,24 @@ function getAllIngredients(recipes) {
   return result
 }
 
-//Generate the ingredients menu from a given recipes array
-export function generateIngredients(recipes) {
-  const ingredientsMenu = document.querySelector('.menu.ingredients .menu__items')
-  ingredientsMenu.innerHTML = ''
-  const allIngredients = getAllIngredients(recipes)
-
-  allIngredients.map(ingredient => {
-    const ingredientItem = document.createElement('li')
-    ingredientItem.classList.add('menu__item')
-    ingredientItem.innerHTML = `
-      <button>${ingredient}</button>
-    `
-    ingredientItem.addEventListener('click', () => {
-      const value = ingredientItem.querySelector('button').textContent
-      const filteredRecipes = searchRecipesByIngredient(recipes, value)
-      updatePage(filteredRecipes)
-      displayChosenTags('ingredients', ingredient)
-    })
-    ingredientsMenu.appendChild(ingredientItem)
-  })
-}
-/* ----------------------------------------------------------------------------------- */
-
 //Ingredient menu search
-function ingredientSearch() {
+export function ingredientSearch() {
   const history = JSON.parse(sessionStorage.getItem('history'))
-  const currentDisplayedRecipes = history[history.length - 1]
+
+  // const currentDisplayedRecipes = history[history.length - 1]
+  const currentDisplayedRecipes = history[0]
   const currentIngredients = getAllIngredients(currentDisplayedRecipes)
   const ingredientsSearchInput = document.getElementById('ingredient')
+  const resetInput = ingredientsSearchInput.nextElementSibling
+  resetInput.addEventListener('click', () => {
+    ingredientsSearchInput.value = ''
+    const ingredientsMenuItems = document.querySelectorAll('.menu.ingredients .menu__item')
+    ingredientsMenuItems.forEach(item => {
+      item.classList.remove('hidden')
+    })
+  })
   ingredientsSearchInput.addEventListener('keyup', () => {
-    const value = ingredientsSearchInput.value
+    const value = ingredientsSearchInput.value.toLowerCase()
     const filteredIngredients = currentIngredients.filter(ingredient => ingredient.includes(value))
     const ingredientsMenuItems = document.querySelectorAll('.menu.ingredients .menu__item')
     ingredientsMenuItems.forEach(item => {
@@ -55,6 +36,3 @@ function ingredientSearch() {
     })
   })
 }
-
-generateIngredients(recipes)
-ingredientSearch()
