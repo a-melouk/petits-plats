@@ -1,37 +1,37 @@
 //Get all the ustensils from a given recipes array
 export function getAllUstensils(recipes) {
-  let result = []
+  let result = [];
   recipes.map(recipe => {
     recipe.ustensils.map(ustensil => {
-      result.push(ustensil.toLowerCase())
-    })
-  })
-  result = [...new Set(result)].sort()
-  return result
+      result.push(ustensil.toLowerCase());
+    });
+  });
+  result = [...new Set(result)].sort();
+  return result;
 }
 
 //Ustensil menu search
 export function ustensilSearch() {
-  const history = JSON.parse(sessionStorage.getItem('history'))
+  const history = JSON.parse(sessionStorage.getItem('history'));
   // const currentDisplayedRecipes = history[history.length - 1]
-  const currentDisplayedRecipes = history[0]
-  const currentUstensils = getAllUstensils(currentDisplayedRecipes)
-  const ustensilsSearchInput = document.getElementById('ustensil')
-  const resetInput = ustensilsSearchInput.nextElementSibling
+  const currentDisplayedRecipes = history[0];
+  const currentUstensils = getAllUstensils(currentDisplayedRecipes);
+  const ustensilsSearchInput = document.getElementById('ustensil');
+  const resetInput = ustensilsSearchInput.nextElementSibling;
   resetInput.addEventListener('click', () => {
-    ustensilsSearchInput.value = ''
-    const ustensilsMenuItems = document.querySelectorAll('.menu.ustensils .menu__item')
+    ustensilsSearchInput.value = '';
+    const ustensilsMenuItems = document.querySelectorAll('.menu.ustensils .menu__item');
     ustensilsMenuItems.forEach(item => {
-      item.classList.remove('hidden')
-    })
-  })
+      item.classList.remove('hidden');
+    });
+  });
   ustensilsSearchInput.addEventListener('keyup', () => {
-    const value = ustensilsSearchInput.value.toLowerCase()
-    const filteredUstensils = currentUstensils.filter(ustensil => ustensil.includes(value))
-    const ustensilsMenuItems = document.querySelectorAll('.menu.ustensils .menu__item')
+    const value = ustensilsSearchInput.value.toLowerCase();
+    const filteredUstensils = currentUstensils.filter(ustensil => ustensil.includes(value));
+    const ustensilsMenuItems = document.querySelectorAll('.menu.ustensils .menu__item');
     ustensilsMenuItems.forEach(item => {
-      if (!filteredUstensils.includes(item.querySelector('button').textContent)) item.classList.add('hidden')
-      else item.classList.remove('hidden')
-    })
-  })
+      if (!filteredUstensils.includes(item.querySelector('button').textContent)) item.classList.add('hidden');
+      else item.classList.remove('hidden');
+    });
+  });
 }

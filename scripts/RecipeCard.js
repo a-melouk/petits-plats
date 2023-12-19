@@ -5,11 +5,11 @@ sessionStorage.setItem('searchBar', JSON.stringify([recipes]))
 sessionStorage.setItem('tags', JSON.stringify({ ingredients: [], appliances: [], ustensils: [] })) */
 
 export function generateRecipeCard(recipes) {
-  const recipesContainer = document.querySelector('.recipes-container')
-  recipesContainer.innerHTML = ''
+  const recipesContainer = document.querySelector('.recipes-container');
+  recipesContainer.innerHTML = '';
   recipes.map(recipe => {
-    const recipeCard = document.createElement('article')
-    recipeCard.classList.add('recipe-card')
+    const recipeCard = document.createElement('article');
+    recipeCard.classList.add('recipe-card');
     recipeCard.innerHTML = `
       <p class='recipe-time'>${recipe.time} min</p>
       <img class="recipe-image" src="./assets/petits-plats-photos/${recipe.image}" alt="${recipe.image}">
@@ -24,14 +24,14 @@ export function generateRecipeCard(recipes) {
         ${recipe.ingredients
           .map(ingredient => {
             //Check if ingredient quantity has a unit
-            let unit = ingredient.unit ? `${ingredient.unit}` : ''
+            let unit = ingredient.unit ? `${ingredient.unit}` : '';
             //Check if ingredient has a quantity
-            let quantity = ingredient.quantity ? `<p class='ingredient-quantity'>${ingredient.quantity} ${unit}</p>` : ''
-            return `<li class='ingredient'><p class='ingredient-name'>${ingredient.ingredient} ${quantity}</p> </li>`
+            let quantity = ingredient.quantity ? `<p class='ingredient-quantity'>${ingredient.quantity} ${unit}</p>` : '';
+            return `<li class='ingredient'><p class='ingredient-name'>${ingredient.ingredient} ${quantity}</p> </li>`;
           })
           .join('')}
         </ul>
-      </section>`
-    recipesContainer.appendChild(recipeCard)
-  })
+      </section>`;
+    recipesContainer.appendChild(recipeCard);
+  });
 }
