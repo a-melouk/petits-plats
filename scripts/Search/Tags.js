@@ -2,6 +2,7 @@ export function searchRecipesByTags(recipes, tags) {
   return recipes.filter(recipe => {
     const recipeIngredients = recipe.ingredients.map(ingredient => ingredient.ingredient.toLowerCase());
     const recipeUstensils = recipe.ustensils.map(ustensil => ustensil.toLowerCase());
+
     let [hasAllIngredients, hasCorrectAppliance, hasAllUtensils] = [false, false, false];
 
     if (tags.ingredients.length === 0 && tags.appliances.length === 0 && tags.ustensils.length === 0) return recipes;

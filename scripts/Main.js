@@ -21,11 +21,11 @@ function initSessionStorage() {
 }
 
 function step0() {
-  generateRecipeCard(recipes);
+  initSessionStorage();
 }
 
 function step1() {
-  initSessionStorage();
+  generateRecipeCard(recipes);
 }
 
 function step2() {
@@ -50,7 +50,7 @@ function step4() {
 async function saveSettings() {
   // Create an array of functions to run:
   // const tasks = [a, b, c, d, e, f]
-  const tasks = [step1, step0, step2, step3, step4];
+  const tasks = [step0, step1, step2, step3, step4];
 
   // Loop over the tasks:
   while (tasks.length > 0) {
