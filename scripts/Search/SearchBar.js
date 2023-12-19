@@ -1,9 +1,27 @@
 function searchRecipesByCategory(recipes, searchValue, category) {
-  return recipes.filter(recipe => recipe[category].toLowerCase().includes(searchValue.toLowerCase()));
+  const result = [];
+  for (let i = 0; i < recipes.length; i++) {
+    const recipe = recipes[i];
+    if (recipe[category].toLowerCase().includes(searchValue.toLowerCase())) {
+      result.push(recipe);
+    }
+  }
+  return result;
 }
 
 function searchRecipesByIngredient(recipes, searchValue) {
-  return recipes.filter(recipe => recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase() === searchValue.toLowerCase()));
+  const result = [];
+  for (let i = 0; i < recipes.length; i++) {
+    const recipe = recipes[i];
+    for (let j = 0; j < recipe.ingredients.length; j++) {
+      const ingredient = recipe.ingredients[j];
+      if (ingredient.ingredient.toLowerCase() === searchValue.toLowerCase()) {
+        result.push(recipe);
+        break;
+      }
+    }
+  }
+  return result;
 }
 
 export function searchRecipesByTitleIngredientsDescription(recipes, search) {
@@ -13,6 +31,6 @@ export function searchRecipesByTitleIngredientsDescription(recipes, search) {
   const tempIngredients = searchRecipesByIngredient(recipes, searchValue);
   const tempDescription = searchRecipesByCategory(recipes, searchValue, 'description');
 
-  const tempResult = [...tempTitle, ...tempIngredients, ...tempDescription];
-  return [...new Set(tempResult)];
+  const tempResult = [...new Set([...tempTitle, ...tempIngredients, ...tempDescription])];
+  return tempResult;
 }
