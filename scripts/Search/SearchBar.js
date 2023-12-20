@@ -6,6 +6,7 @@ export function searchRecipesByTitleIngredientsDescription(recipes, searchValue)
   for (let i = 0; i < length; i++) {
     const recipe = recipes[i];
     const ingredientsLength = recipe.ingredients.length;
+    //Search in ingredients
     for (let j = 0; j < ingredientsLength; j++) {
       const ingredient = recipe.ingredients[j];
       if (ingredient.ingredient.toLowerCase() === searchValue && !existingIds.includes(recipe.id)) {
@@ -14,6 +15,7 @@ export function searchRecipesByTitleIngredientsDescription(recipes, searchValue)
         break;
       }
     }
+    //Search in title and description
     if ((recipe.name.toLowerCase().includes(searchValue) || recipe.description.toLowerCase().includes(searchValue)) && !existingIds.includes(recipe.id)) {
       existingIds.push(recipe.id);
       result.push(recipe);

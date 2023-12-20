@@ -61,12 +61,19 @@ export function displayChosenTags(value, category) {
     if (searchBarInput.value.length >= 3) {
       originalRecipes = JSON.parse(sessionStorage.getItem('searchBar'))[0];
     } else originalRecipes = JSON.parse(sessionStorage.getItem('recipes'))[0];
+    //Used to retrieve the category of the chosen tag
     const chosenTagCategory = chosenTag.querySelector('.hidden').textContent;
+    //Remove the chosen tag from the selected tags in sessionStorage
     removeChosenTagFromSelected(chosenTagCategory, value);
+    //Get the updated selected tags from sessionStorage
     const tags = JSON.parse(sessionStorage.getItem('tags'));
+    //Search the recipes by tags
     const filteredRecipes = searchRecipesByTags(originalRecipes, tags);
+    //Update the page
     updatePage(filteredRecipes, 'history');
+    //Remove the chosen tag from the chosen tags div
     chosenTag.remove();
   });
+  //Add the chosen tag to the chosen tags div
   chosenTagsDiv.appendChild(chosenTag);
 }

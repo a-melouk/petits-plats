@@ -2,11 +2,13 @@ import recipes from '../data/recipes.mjs';
 
 import { updatePage } from './Utils.js';
 import { searchRecipesByTitleIngredientsDescription } from './Search/SearchBar.js';
+
 export function searchBox() {
   let filteredRecipes = [];
   let timeout = null;
   const searchInput = document.getElementById('search-value');
   searchInput.addEventListener('keyup', () => {
+    //Reset tags
     sessionStorage.setItem('tags', JSON.stringify({ ingredients: [], appliances: [], ustensils: [] }));
     // document.querySelector('.chosen-tags').innerHTML = '';
     document.querySelector('.chosen-tags').replaceChildren();
