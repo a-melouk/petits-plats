@@ -8,7 +8,8 @@ export function searchBox() {
   const searchInput = document.getElementById('search-value');
   searchInput.addEventListener('keyup', () => {
     sessionStorage.setItem('tags', JSON.stringify({ ingredients: [], appliances: [], ustensils: [] }));
-    document.querySelector('.chosen-tags').innerHTML = '';
+    // document.querySelector('.chosen-tags').innerHTML = '';
+    document.querySelector('.chosen-tags').replaceChildren();
     clearTimeout(timeout);
     timeout = setTimeout(function () {
       if (searchInput.value.length >= 3) {

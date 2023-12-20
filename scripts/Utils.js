@@ -22,20 +22,6 @@ export function removeChosenTagFromSelected(category, tag) {
   sessionStorage.setItem('tags', JSON.stringify(tags));
 }
 
-export function displayRecipe(recipe) {
-  const ingredients = [];
-  recipe.ingredients.map(ingredient => {
-    ingredients.push(ingredient.ingredient);
-  });
-  console.log(`
-  recipe: {
-    name:${recipe.name},
-    ingredients:${ingredients},
-    appliance:${recipe.appliance},
-    ustensils:${recipe.ustensils},
-  `);
-}
-
 function resetInputs() {
   const inputs = document.querySelectorAll('.filter.search-bar input');
   inputs.forEach(input => {
