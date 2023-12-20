@@ -1,36 +1,23 @@
-function searchRecipesByCategory(recipes, searchValue, category) {
+export function searchRecipesByTitleIngredientsDescription(recipes, searchValue) {
+  searchValue = searchValue.toLowerCase();
   const result = [];
-  for (let i = 0; i < recipes.length; i++) {
+  const length = recipes.length;
+  const existingIds = [];
+  for (let i = 0; i < length; i++) {
     const recipe = recipes[i];
-    if (recipe[category].toLowerCase().includes(searchValue.toLowerCase())) {
-      result.push(recipe);
-    }
-  }
-  return result;
-}
-
-function searchRecipesByIngredient(recipes, searchValue) {
-  const result = [];
-  for (let i = 0; i < recipes.length; i++) {
-    const recipe = recipes[i];
-    for (let j = 0; j < recipe.ingredients.length; j++) {
+    const ingredientsLength = recipe.ingredients.length;
+    for (let j = 0; j < ingredientsLength; j++) {
       const ingredient = recipe.ingredients[j];
-      if (ingredient.ingredient.toLowerCase() === searchValue.toLowerCase()) {
+      if (ingredient.ingredient.toLowerCase() === searchValue && !existingIds.includes(recipe.id)) {
+        existingIds.push(recipe.id);
         result.push(recipe);
         break;
       }
     }
+    if ((recipe.name.toLowerCase().includes(searchValue) || recipe.description.toLowerCase().includes(searchValue)) && !existingIds.includes(recipe.id)) {
+      existingIds.push(recipe.id);
+      result.push(recipe);
+    }
   }
   return result;
-}
-
-export function searchRecipesByTitleIngredientsDescription(recipes, search) {
-  const searchValue = search.toLowerCase();
-
-  const tempTitle = searchRecipesByCategory(recipes, searchValue, 'name');
-  const tempIngredients = searchRecipesByIngredient(recipes, searchValue);
-  const tempDescription = searchRecipesByCategory(recipes, searchValue, 'description');
-
-  const tempResult = [...new Set([...tempTitle, ...tempIngredients, ...tempDescription])];
-  return tempResult;
 }

@@ -6,7 +6,8 @@ sessionStorage.setItem('tags', JSON.stringify({ ingredients: [], appliances: [],
 
 export function generateRecipeCard(recipes) {
   const recipesContainer = document.querySelector('.recipes-container');
-  recipesContainer.innerHTML = '';
+  // recipesContainer.innerHTML = '';
+  recipesContainer.replaceChildren();
   recipes.map(recipe => {
     const recipeCard = document.createElement('article');
     recipeCard.classList.add('recipe-card');

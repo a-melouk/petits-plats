@@ -9,7 +9,8 @@ export function generateMenu(recipes, category) {
   let tags = JSON.parse(sessionStorage.getItem('tags'));
 
   const menu = document.querySelector(`.menu.${category} .menu__items`);
-  menu.innerHTML = '';
+  // menu.innerHTML = '';
+  menu.replaceChildren();
   let items = [];
   switch (category) {
     case 'ingredients':

@@ -64,7 +64,6 @@ export function displayChosenTags(value, category) {
     const chosenTagCategory = chosenTag.querySelector('.hidden').textContent;
     removeChosenTagFromSelected(chosenTagCategory, value);
     const tags = JSON.parse(sessionStorage.getItem('tags'));
-    console.log(originalRecipes, tags);
     const filteredRecipes = searchRecipesByTags(originalRecipes, tags);
     updatePage(filteredRecipes, 'history');
     chosenTag.remove();
