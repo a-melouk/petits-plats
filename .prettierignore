@@ -1,0 +1,6 @@
+original
+*.min.*
+*min.css
+*.min.*
+/data/recipes.mjs
+/css/*.min.*
