@@ -1,0 +1,3 @@
+*.min.*
+/data/recipes.mjs
+/css/*.min.*
