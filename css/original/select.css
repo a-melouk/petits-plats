@@ -1,0 +1,250 @@
+.menu.opened,
+.menu__content.opened {
+  height: fit-content;
+  transition: max-height 0.3s ease-out;
+}
+.menu.closed,
+.menu.opened,
+.menu__content.closed,
+.menu__content.opened,
+.menu__items {
+  transition: max-height 0.3s ease-out;
+}
+.menu,
+.menu__item,
+.menu__items {
+  background-color: #fff;
+}
+.chosen-tag button,
+.menu__item {
+  cursor: pointer;
+  user-select: none;
+}
+.filter-total {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+  padding-inline: 102px;
+}
+.menu,
+.tags-recipes {
+  flex-direction: column;
+}
+.tags-recipes {
+  display: flex;
+  gap: 43px;
+  position: absolute;
+  top: 727px;
+  width: 100%;
+}
+.filter-bar {
+  display: flex;
+  gap: 64px;
+}
+.menu,
+.menu__header {
+  gap: 14px;
+  display: flex;
+}
+.filters {
+  display: flex;
+  justify-content: space-between;
+}
+.menu {
+  width: 195px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.menu.opened {
+  max-height: 315px;
+  z-index: 3;
+}
+.menu.closed {
+  max-height: 53px;
+  overflow: hidden;
+}
+.menu__header {
+  flex-direction: column;
+  padding: 16px;
+}
+div.menu__title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+p.menu__title {
+  color: #1b1b1b;
+  font-size: 16px;
+  font-weight: 500;
+}
+.filter.search-bar button,
+.menu__title button {
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  background: 0 0;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  user-select: none;
+}
+.fa-chevron-down {
+  color: #1b1b1b;
+  font-size: 14px;
+}
+.menu__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.menu__content.closed {
+  max-height: 0;
+}
+.menu__content.opened {
+  max-height: 245px;
+}
+.filter.search-bar {
+  min-height: 36px;
+  width: 163px;
+  align-items: center;
+  border-radius: 2px;
+  border: 1px solid #cdcdcd;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 16px;
+}
+.filter.search-bar input {
+  width: 100%;
+  border: 0;
+  color: #7a7a7a;
+  font-size: 14px;
+}
+.filter.search-bar input:focus {
+  outline: 0;
+}
+.filter.search-bar button span {
+  color: #7a7a7a;
+}
+.fa-xmark {
+  margin-right: 10px;
+}
+.menu__items {
+  width: 100%;
+  max-height: 200px;
+  align-items: flex-start;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.menu__item {
+  height: 42px;
+  width: 100%;
+  align-items: center;
+  border: none;
+  color: #1b1b1b;
+  display: flex;
+  font-size: 14px;
+  margin: 0;
+  padding: 16px;
+  text-align: left;
+}
+.menu__item:hover {
+  background-color: #ffd15b;
+}
+.menu__item button {
+  background: 0 0;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  text-transform: capitalize;
+}
+.menu__item:last-child:hover {
+  border-radius: 0 0 15px 15px;
+}
+.total {
+  color: #1b1b1b;
+  font-family: Anton;
+  font-size: 21px;
+}
+.chosen-tags.closed {
+  display: none;
+}
+.chosen-tags.opened {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 21px;
+}
+.chosen-tag {
+  display: inline-flex;
+  padding: 17px 18px;
+  align-items: center;
+  gap: 15px;
+  border-radius: 10px;
+  background: #ffd15b;
+  height: 53px;
+}
+.chosen-tag button {
+  align-items: center;
+  background: 0 0;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+.tag-text {
+  color: #000;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.tags-recipes__container {
+  position: absolute;
+  top: 743px;
+}
+@media (min-width: 768px) {
+  .filter-total {
+    flex-direction: column;
+    padding: 21px 25px 0;
+  }
+  .chosen-tags.opened {
+    padding-bottom: 40px;
+  }
+  .tags-recipes {
+    gap: 0;
+    padding-inline: 25px;
+    padding-block: 40px 55px;
+  }
+  .total {
+    align-self: center;
+    margin: 10px;
+    order: 0;
+  }
+  .filters {
+    order: 1;
+    gap: 0;
+  }
+}
+@media (min-width: 1232px) {
+  .filter-total {
+    flex-direction: row;
+    padding: 21px 102px 0;
+  }
+  .total {
+    align-self: flex-start;
+    margin: 0;
+    order: 1;
+  }
+  .filters {
+    order: 0;
+    gap: 66px;
+  }
+  .tags-recipes {
+    padding-inline: 102px;
+    padding-block: 0px;
+  }
+}
